@@ -9,12 +9,11 @@
     </tbody>
 </table>
 
-<div id="formEditCar">
+<a id="btnAddList" class="btn-floating btn-large waves-effect waves-light teal" onclick="indexController.showForm()"><i class="material-icons">add</i></a>
+
+<div id="formEditList" style="display: none">
     <div class="row">
-        <form class="col s9">
-            <div class="input-field col s1">
-                <a class="btn-floating btn-large waves-effect waves-light teal" onclick="editController.saveList()"><i class="material-icons">add</i></a>
-            </div>
+        <form class="col s10">
             <div class="input-field col s3">
                 <input id="inputShopList" type="text" class="validate">
                 <label for="inputShopList">Magasin</label>
@@ -22,6 +21,33 @@
             <div class="input-field col s3">
                 <input id="inputDateList" type="date" class="validate">
                 <label for="inputDateList">Date</label>
+            </div>
+            <div class="input-field col s1">
+                <a class="btn-floating btn-large waves-effect waves-light teal" onclick="editController.saveList()"><i class="material-icons right">check</i></a>
+            </div>
+            <div class="input-field col s1">
+                <a class="btn-floating btn-large waves-effect waves-light teal" onclick="indexController.closeForms()"><i class="material-icons right">clear</i></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="formUpdateList" style="display: none">
+    <div class="row">
+        <form class="col s10">
+            <div class="input-field col s3">
+                <input id="inputUpdateShop" type="text" class="validate">
+                <label for="inputUpdateShop">Magasin</label>
+            </div>
+            <div class="input-field col s3">
+                <input id="inputUpdateDate" type="date" class="validate">
+                <label for="inputUpdateDate">Date</label>
+            </div>
+            <div class="input-field col s1">
+                <a class="btn-floating btn-large waves-effect waves-light teal" onclick="editController.updateList()"><i class="material-icons right">check</i></a>
+            </div>
+            <div class="input-field col s1">
+                <a class="btn-floating btn-large waves-effect waves-light teal" onclick="indexController.closeForms()"><i class="material-icons right">clear</i></a>
             </div>
         </form>
     </div>

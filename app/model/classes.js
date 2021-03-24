@@ -7,4 +7,9 @@ class List
         this.date = date
         this.archived = false
     }
+
+    toString()
+    {
+        return `${this.shop} (${this.date.toLocaleDateString()}) `
+    }
 }
