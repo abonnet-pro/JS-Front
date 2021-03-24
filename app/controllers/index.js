@@ -12,6 +12,7 @@ class IndexController extends BaseController
     {
         let content = ''
         this.tableAllList.style.display = "none"
+
         try {
             for (const list of await this.model.getAllList()) {
                 const date = list.date.toLocaleDateString()
@@ -27,6 +28,7 @@ class IndexController extends BaseController
             this.displayServiceError()
         }
     }
+
 }
 
 window.indexController = new IndexController()

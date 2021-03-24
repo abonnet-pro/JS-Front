@@ -13,4 +13,8 @@ class Model {
         }
         return lists
     }
+
+    insert(list) {
+        return this.listAPI.insert(list).then(res => res.status)
+    }
 }
