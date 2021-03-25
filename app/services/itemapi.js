@@ -21,6 +21,11 @@ class ItemAPI
         return fetchJSON(`${serviceBaseItemUrl}/${id}`)
     }
 
+    delete(id)
+    {
+        return fetch(`${serviceBaseItemUrl}/${id}`, { method: 'DELETE' })
+    }
+
     update(item)
     {
         return fetch(serviceBaseItemUrl, {

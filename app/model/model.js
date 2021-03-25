@@ -40,6 +40,11 @@ class Model {
         return this.listAPI.delete(id).then(res => res.status)
     }
 
+    deleteItem(id)
+    {
+        return this.itemAPI.delete(id).then(res => res.status)
+    }
+
     update(list)
     {
         return this.listAPI.update(list).then(res => res.status)

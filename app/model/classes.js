@@ -24,4 +24,9 @@ class Item
         this.quantity = quantity
         this.checked = false
     }
+
+    toString()
+    {
+        return this.label
+    }
 }

@@ -28,7 +28,7 @@ class ItemController extends BaseController
                         <td>${item.label}</td>
                         <td>${item.quantity}</td>
                         <td>
-                            <button type="button" class="red darken-4 btn" onclick="">
+                            <button type="button" class="red darken-4 btn" onclick="itemController.displayConfirmDelete(${item.id})">
                             <i class="small material-icons">delete</i>
                             </button>
                         </td>
@@ -42,6 +42,37 @@ class ItemController extends BaseController
             $('#itemBodyTable').innerHTML = content
         }
         catch (e) {
+            console.log(e)
+            this.displayServiceError()
+        }
+    }
+
+    async displayConfirmDelete(id)
+    {
+        try
+        {
+            const item = await this.model.getItem(id)
+            super.displayConfirmDelete(item, async () => {
+                switch (await this.model.deleteItem(id))
+                {
+                    case 200:
+                        this.deletedItem = item
+                        this.displayDeletedMessage("itemController.undoDelete()");
+                        break
+                    case 404:
+                        this.displayNotFoundError();
+                        break
+                    case 500:
+                        this.displayNotEmptyListError()
+                        break
+                    default:
+                        this.displayServiceError()
+                }
+                this.displayAllItem()
+            })
+        }
+        catch(e)
+        {
             console.log(e)
             this.displayServiceError()
         }
@@ -83,6 +114,21 @@ class ItemController extends BaseController
         $("#inputLabelItem").style.backgroundColor = ""
         $("#inputQuantityItem").style.backgroundColor = ""
         this.getModal("#addItem").open()
+    }
+
+    undoDelete()
+    {
+        if (this.deletedItem)
+        {
+            this.model.insertItem(this.deletedItem).then(status => {
+                if (status === 200)
+                {
+                    this.deletedItem = null
+                    this.displayUndoDone()
+                    this.displayAllItem()
+                }
+            }).catch(_ => this.displayServiceError())
+        }
     }
 }
 
