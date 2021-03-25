@@ -1,6 +1,5 @@
 class BaseController
 {
-
     constructor()
     {
         M.AutoInit();

@@ -1,15 +1,15 @@
-const serviceBaseUrl = "http://localhost:3333/list"
+const serviceBaseListUrl = "http://localhost:3333/list"
 
 class ListAPI
 {
     getAllList()
     {
-        return fetchJSON(serviceBaseUrl)
+        return fetchJSON(serviceBaseListUrl)
     }
 
     insert(list)
     {
-        return fetch(serviceBaseUrl, {
+        return fetch(serviceBaseListUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(list)
@@ -18,17 +18,17 @@ class ListAPI
 
     get(id)
     {
-        return fetchJSON(`${serviceBaseUrl}/${id}`)
+        return fetchJSON(`${serviceBaseListUrl}/${id}`)
     }
 
     delete(id)
     {
-        return fetch(`${serviceBaseUrl}/${id}`, { method: 'DELETE' })
+        return fetch(`${serviceBaseListUrl}/${id}`, { method: 'DELETE' })
     }
 
     update(list)
     {
-        return fetch(serviceBaseUrl, {
+        return fetch(serviceBaseListUrl, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(list)

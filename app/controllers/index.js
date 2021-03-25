@@ -23,7 +23,7 @@ class IndexController extends BaseController
             for (const list of await this.model.getAllList()) {
                 const date = list.date.toLocaleDateString()
                 content += `<tr>
-                                <td>${list.shop}</td>
+                                <td><a class="btn transparent black-text" onclick="indexController.navigateItemList('${list.id}')">${list.shop}</a></td>
                                 <td>${date}</td>
                                 <td class="icon">
                                     <button class="btn" onclick="indexController.displayConfirmDelete(${list.id})"><i class="material-icons">delete</i></button>
@@ -37,6 +37,12 @@ class IndexController extends BaseController
             console.log(err)
             this.displayServiceError()
         }
+    }
+
+    navigateItemList(listId)
+    {
+        this.listId = listId
+        navigate("item")
     }
 
     async edit(id)
@@ -105,6 +111,8 @@ class IndexController extends BaseController
 
     showForm()
     {
+        $("#inputShopList").style.backgroundColor = ""
+        $("#inputDateList").style.backgroundColor = ""
         this.formEditList.style.display = "block"
         this.formUpdateList.style.display = "none"
         this.btnAddList.style.display = "none"

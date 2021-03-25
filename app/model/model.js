@@ -1,6 +1,7 @@
 class Model {
     constructor() {
         this.listAPI = new ListAPI()
+        this.itemAPI = new ItemAPI()
     }
 
     async getAllList()
@@ -14,9 +15,24 @@ class Model {
         return lists
     }
 
+    async getAllItemByList(id)
+    {
+        let items = []
+        for (let item of await this.itemAPI.getAllItemByList(id))
+        {
+            items.push(Object.assign(new Item(), item))
+        }
+        return items
+    }
+
     insert(list)
     {
         return this.listAPI.insert(list).then(res => res.status)
+    }
+
+    insertItem(item)
+    {
+        return this.itemAPI.insert(item).then(res => res.status)
     }
 
     delete(id)
@@ -27,6 +43,11 @@ class Model {
     update(list)
     {
         return this.listAPI.update(list).then(res => res.status)
+    }
+
+    updateItem(item)
+    {
+        return this.itemAPI.update(item).then(res => res.status)
     }
 
     async getList(id)
@@ -44,5 +65,17 @@ class Model {
         }
     }
 
-
+    async getItem(id)
+    {
+        try
+        {
+            const item = Object.assign(new Item(), await this.itemAPI.get(id))
+            return item
+        }
+        catch (e)
+        {
+            if (e === 404) return null
+            return undefined
+        }
+    }
 }

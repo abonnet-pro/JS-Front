@@ -1,0 +1,68 @@
+<nav>
+    <div class="nav-wrapper">
+        <a id="itemTitle" class="brand-logo"></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a onclick="itemController.newItem()" class="modal-trigger">Ajouter ingrédient</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div id="listContent">
+    <table id="itemTable" class="striped centered">
+        <thead>
+        <tr>
+            <th>Acheté</th>
+            <th>Ingrédients</th>
+            <th>Quantité</th>
+        </tr>
+        </thead>
+        <tbody id="itemBodyTable">
+        </tbody>
+    </table>
+</div>
+
+<div id="addItem" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <form>
+                <div class="row">
+                    <div class="input-field">
+                        <input id="inputLabelItem" type="text" class="validate">
+                        <label for="inputLabelItem">Nom de l'ingredient</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="inputQuantityItem" type="number" min="1" class="validate">
+                        <label for="inputQuantityItem">Nombres d'ingredients</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="editController.saveItem()">Confirmer</button>
+        <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
+    </div>
+</div>
+
+<div id="updateItem" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <form>
+                <div class="row">
+                    <div class="input-field">
+                        <input id="inputLabelUpdateItem" type="text" class="validate">
+                        <label for="inputLabelUpdateItem">Nom de l'ingredient</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="inputQuantityUpdateItem" type="number" min="1" class="validate">
+                        <label for="inputQuantityUpdateItem">Nombres d'ingredients</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="editController.updateItem()">Confirmer</button>
+        <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
+    </div>
+</div>

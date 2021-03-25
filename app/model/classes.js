@@ -13,3 +13,15 @@ class List
         return `${this.shop} (${this.date.toLocaleDateString()}) `
     }
 }
+
+class Item
+{
+    constructor(idlist, label, quantity)
+    {
+        this.idlist = idlist
+        this.id = null
+        this.label = label
+        this.quantity = quantity
+        this.checked = false
+    }
+}
