@@ -145,6 +145,11 @@ class ItemController extends BaseController
             }).catch(_ => this.displayServiceError())
         }
     }
+
+    async archivedList()
+    {
+        // TODO : archivage d'une liste + confirmation + annulation
+    }
 }
 
 window.itemController = new ItemController()

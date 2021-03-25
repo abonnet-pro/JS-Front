@@ -26,8 +26,9 @@ class IndexController extends BaseController
                                 <td><a class="btn transparent black-text" onclick="indexController.navigateItemList('${list.id}')">${list.shop}</a></td>
                                 <td>${date}</td>
                                 <td class="icon">
-                                    <button class="btn" onclick="indexController.displayConfirmDelete(${list.id})"><i class="material-icons">delete</i></button>
+                                    <a class="btn tooltipped" data-position="bottom" data-tooltip="Supprimer" onclick="indexController.displayConfirmDelete(${list.id})"><i class="material-icons">delete</i></a>
                                     <button class="btn" onclick="indexController.edit(${list.id})"><i class="material-icons">edit</i></button>
+                                    <button class="btn" onclick="indexController.archivedList(${list.id})"><i class="material-icons">archive</i></button>
                                 </td>
                             </tr>`
             }
@@ -35,6 +36,23 @@ class IndexController extends BaseController
             this.tableAllList.style.display = "block"
         } catch (err) {
             console.log(err)
+            this.displayServiceError()
+        }
+    }
+
+    async archivedList(id)
+    {
+        // TODO : confirmation archive + retour arriere
+        try
+        {
+            const list = await this.model.getList(id)
+            list.archived = true
+            this.model.update(list)
+            this.displayAllList()
+        }
+        catch (e)
+        {
+            console.log(e)
             this.displayServiceError()
         }
     }

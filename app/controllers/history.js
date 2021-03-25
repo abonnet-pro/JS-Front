@@ -29,7 +29,7 @@ class HistoryController extends BaseController {
                 html +=`<div class="card blue-grey darken-1">
                         <a class="btn-floating red darken-4 right" onclick=""><i class="material-icons">clear</i></a>
                         <div class="card-content white-text">
-                            <span class="card-title">${historyList.date.toLocaleDateString()}</span>
+                            <span class="card-title">${historyList.shop} \n ${historyList.date.toLocaleDateString()}</span>
                             ${await this.displayItem(historyList.id)}
                         </div>
                     </div>`
