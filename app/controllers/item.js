@@ -21,7 +21,7 @@ class ItemController extends BaseController
                 content += `<tr>
                         <td>
                             <label>
-                            <input type="checkbox" onchange="" ${checked}"/>
+                            <input type="checkbox" onchange="itemController.updateCheck(${item.id})" ${checked}/>
                             <span></span>
                             </label>
                         </td>
@@ -40,6 +40,20 @@ class ItemController extends BaseController
                      </tr>`
             }
             $('#itemBodyTable').innerHTML = content
+        }
+        catch (e) {
+            console.log(e)
+            this.displayServiceError()
+        }
+    }
+
+    async updateCheck(id)
+    {
+        try
+        {
+            const item = await this.model.getItem(id)
+            item.checked = !item.checked
+            this.model.updateItem(item)
         }
         catch (e) {
             console.log(e)
