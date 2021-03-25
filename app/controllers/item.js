@@ -55,7 +55,8 @@ class ItemController extends BaseController
             item.checked = !item.checked
             this.model.updateItem(item)
         }
-        catch (e) {
+        catch (e)
+        {
             console.log(e)
             this.displayServiceError()
         }

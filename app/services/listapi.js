@@ -7,6 +7,11 @@ class ListAPI
         return fetchJSON(serviceBaseListUrl)
     }
 
+    getAllArchivedList()
+    {
+        return fetchJSON(`${serviceBaseListUrl}/archived`)
+    }
+
     insert(list)
     {
         return fetch(serviceBaseListUrl, {

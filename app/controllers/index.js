@@ -139,6 +139,11 @@ class IndexController extends BaseController
             }).catch(_ => this.displayServiceError())
         }
     }
+
+    showHistory()
+    {
+        navigate("history")
+    }
 }
 
 window.indexController = new IndexController()

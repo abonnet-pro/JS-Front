@@ -15,6 +15,17 @@ class Model {
         return lists
     }
 
+    async getAllArchivedList()
+    {
+        let lists = []
+        for (let list of await this.listAPI.getAllArchivedList())
+        {
+            list.date = new Date(list.date)
+            lists.push(Object.assign(new List(), list))
+        }
+        return lists
+    }
+
     async getAllItemByList(id)
     {
         let items = []
