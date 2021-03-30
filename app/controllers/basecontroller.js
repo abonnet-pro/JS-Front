@@ -29,6 +29,23 @@ class BaseController
         }; history.pushState({}, '');
     }
 
+    displayConfirmArchive(object, onClick)
+    {
+        if (object === undefined)
+        {
+            this.displayServiceError()
+            return
+        }
+        if (object === null)
+        {
+            this.displayNotFoundError()
+            return
+        }
+        $('#spanArchiveObject').innerText = object.toString()
+        $('#btnArchive').onclick = onClick
+        this.getModal('#modalConfirmArchive').open()
+    }
+
     displayConfirmDelete(object, onclick)
     {
         if (object === undefined)
@@ -59,6 +76,11 @@ class BaseController
     displayDeletedMessage(onUndo)
     {
         this.toast( `<span>Supression effectuée</span><button class="btn-flat toast-action" onclick="${onUndo}">Annuler</button>`)
+    }
+
+    displayArchivedMessage()
+    {
+        this.toast( `<span>Archive effectuée</span>`)
     }
 
     displayUndoDone()

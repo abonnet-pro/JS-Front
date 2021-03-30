@@ -28,7 +28,7 @@ class IndexController extends BaseController
                                 <td class="icon">
                                     <a class="btn tooltipped" data-position="bottom" data-tooltip="Supprimer" onclick="indexController.displayConfirmDelete(${list.id})"><i class="material-icons">delete</i></a>
                                     <button class="btn" onclick="indexController.edit(${list.id})"><i class="material-icons">edit</i></button>
-                                    <button class="btn" onclick="indexController.archivedList(${list.id})"><i class="material-icons">archive</i></button>
+                                    <button class="btn" onclick="indexController.displayConfirmArchive(${list.id})"><i class="material-icons">archive</i></button>
                                 </td>
                             </tr>`
             }
@@ -36,23 +36,6 @@ class IndexController extends BaseController
             this.tableAllList.style.display = "block"
         } catch (err) {
             console.log(err)
-            this.displayServiceError()
-        }
-    }
-
-    async archivedList(id)
-    {
-        // TODO : confirmation archive + retour arriere
-        try
-        {
-            const list = await this.model.getList(id)
-            list.archived = true
-            this.model.update(list)
-            this.displayAllList()
-        }
-        catch (e)
-        {
-            console.log(e)
             this.displayServiceError()
         }
     }
@@ -87,6 +70,37 @@ class IndexController extends BaseController
         catch (err)
         {
             console.log(err)
+            this.displayServiceError()
+        }
+    }
+
+    async displayConfirmArchive(id)
+    {
+        try
+        {
+            const list = await this.model.getList(id)
+            list.archived = true
+            super.displayConfirmArchive(list, async () => {
+                switch (await this.model.update(list))
+                {
+                    case 200:
+                        this.displayArchivedMessage();
+                        navigate("index")
+                        break
+                    case 404:
+                        this.displayNotFoundError();
+                        break
+                    case 500:
+                        this.displayNotEmptyListError()
+                        break
+                    default:
+                        this.displayServiceError()
+                }
+                this.displayAllList()
+            })
+        }
+        catch (e) {
+            console.log(e)
             this.displayServiceError()
         }
     }
