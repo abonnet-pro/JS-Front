@@ -2,7 +2,7 @@ class ItemController extends BaseController
 {
     constructor()
     {
-        super()
+        super(true)
         this.displayAllItem()
     }
 
@@ -144,11 +144,6 @@ class ItemController extends BaseController
                 }
             }).catch(_ => this.displayServiceError())
         }
-    }
-
-    async archivedList()
-    {
-        // TODO : archivage d'une liste + confirmation + annulation
     }
 }
 

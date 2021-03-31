@@ -1,7 +1,9 @@
-class BaseFormController extends BaseController {
+class BaseFormController extends BaseController
+{
 
-    constructor() {
-        super()
+    constructor(secured)
+    {
+        super(secured)
     }
 
     validateRequiredField(selector, name)

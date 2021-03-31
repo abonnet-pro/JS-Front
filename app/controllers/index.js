@@ -2,7 +2,7 @@ class IndexController extends BaseController
 {
     constructor()
     {
-        super()
+        super(true)
         this.tableAllList = $('#tableAllList')
         this.tableBodyAllList = $('#tableBodyAllList')
         this.formEditList = $('#formEditList')

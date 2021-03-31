@@ -1,6 +1,8 @@
-class EditController extends BaseFormController {
-    constructor() {
-        super()
+class EditController extends BaseFormController
+{
+    constructor()
+    {
+        super(true)
     }
 
     async updateList()

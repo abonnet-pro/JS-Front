@@ -1,6 +1,6 @@
 class HistoryController extends BaseController {
     constructor() {
-        super()
+        super(true)
         this.displayHistoryList()
     }
 

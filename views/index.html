@@ -1,7 +1,10 @@
 <nav>
     <div class="nav-wrapper">
         <a id="itemTitle" class="brand-logo">Listes de course</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <ul id="nav-deconexion" class="right hide-on-med-and-down">
+            <li><a onclick="loginController.deconnexion()" class="modal-trigger">Deconnexion</a></li>
+        </ul>
+        <ul id="nav-history" class="right hide-on-med-and-down">
             <li><a onclick="indexController.showHistory()" class="modal-trigger">Historique</a></li>
         </ul>
     </div>

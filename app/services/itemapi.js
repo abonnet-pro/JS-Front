@@ -1,36 +1,42 @@
-const serviceBaseItemUrl = "http://localhost:3333/item"
-
-class ItemAPI
+class ItemAPI extends BaseAPI
 {
+    constructor()
+    {
+        super("item")
+    }
+
     getAllItemByList(id)
     {
-        return fetchJSON(`${serviceBaseItemUrl}/list/${id}`)
+        return fetchJSON(`${this.url}/list/${id}`, this.token)
     }
 
     insert(item)
     {
-        return fetch(serviceBaseItemUrl, {
+        this.headers.set( 'Content-Type', 'application/json' )
+        return fetch(this.url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: this.headers,
             body: JSON.stringify(item)
         })
     }
 
     get(id)
     {
-        return fetchJSON(`${serviceBaseItemUrl}/${id}`)
+        return fetchJSON(`${this.url}/${id}`, this.token)
     }
 
     delete(id)
     {
-        return fetch(`${serviceBaseItemUrl}/${id}`, { method: 'DELETE' })
+        this.headers.delete('Content-Type')
+        return fetch(`${this.url}/${id}`, { method: 'DELETE', headers: this.headers })
     }
 
     update(item)
     {
-        return fetch(serviceBaseItemUrl, {
+        this.headers.set( 'Content-Type', 'application/json' )
+        return fetch(this.url, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: this.headers,
             body: JSON.stringify(item)
         })
     }
