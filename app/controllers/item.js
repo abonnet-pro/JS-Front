@@ -67,7 +67,7 @@ class ItemController extends BaseController
         try
         {
             const item = await this.model.getItem(id)
-            super.displayConfirmDelete(item, async () => {
+                super.displayConfirmDelete(item, async () => {
                 switch (await this.model.deleteItem(id))
                 {
                     case 200:

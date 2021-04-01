@@ -15,4 +15,8 @@ class ShareAPI extends BaseAPI
         })
     }
 
+    getShareSendByList(id)
+    {
+        return fetchJSON(`${this.url}/send/${id}`, this.token)
+    }
 }

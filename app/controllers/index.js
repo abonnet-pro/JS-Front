@@ -138,6 +138,10 @@ class IndexController extends BaseController
     displaySearchShare(listId)
     {
         this.listId = listId
+        $("#inputLoginShare").value = null
+        $("#inputLoginShare").style.backgroundColor = ""
+        $("#userList").innerHTML = null
+        $("#userList").disabled = true
         this.getModal("#formShareList").open()
     }
 

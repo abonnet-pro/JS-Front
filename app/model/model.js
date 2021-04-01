@@ -50,6 +50,16 @@ class Model
         return users
     }
 
+    async getShareSendByList(id)
+    {
+        let shares = []
+        for(let share of await this.shareAPI.getShareSendByList(id))
+        {
+            shares.push(Object.assign(new Share(), share))
+        }
+        return shares
+    }
+
     insert(list)
     {
         return this.listAPI.insert(list).then(res => res.status)
@@ -111,6 +121,20 @@ class Model
         {
             const item = Object.assign(new Item(), await this.itemAPI.get(id))
             return item
+        }
+        catch (e)
+        {
+            if (e === 404) return null
+            return undefined
+        }
+    }
+
+    async getUser(id)
+    {
+        try
+        {
+            const user = Object.assign(new UserAccount(), await this.userAccountAPI.get(id))
+            return user
         }
         catch (e)
         {

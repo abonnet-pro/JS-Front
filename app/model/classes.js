@@ -35,8 +35,10 @@ class UserAccount
 {
     constructor(displayname, login)
     {
+        this.id = null
         this.displayname = displayname
-        this.login = login
+        this.displayname = login
+        this.challenge = null
     }
 
     toString()
@@ -54,10 +56,5 @@ class Share
         this.iduserreceive = iduserreceive
         this.idlist = idlist
         this.modification = modification
-    }
-
-    toString()
-    {
-
     }
 }

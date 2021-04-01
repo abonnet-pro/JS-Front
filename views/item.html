@@ -4,8 +4,11 @@
         <ul class="right hide-on-med-and-down">
             <li><a onclick="indexController.displayConfirmArchive(indexController.listId)" class="modal-trigger">Terminer la liste</a></li>
         </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <ul class="right hide-on-med-and-down">
             <li><a onclick="itemController.newItem()" class="modal-trigger">Ajouter ingrédient</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a onclick="shareController.displayShareList()" class="modal-trigger">Voir les partages</a></li>
         </ul>
     </div>
 </nav>
@@ -67,5 +70,26 @@
     <div class="modal-footer ">
         <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="editController.updateItem()">Confirmer</button>
         <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
+    </div>
+</div>
+
+<div id="modalListShare" class="modal">
+    <div class="modal-content">
+        <h4>Partages</h4>
+        <p id="labelShare" style="display: none">Cette liste est partagé avec :</p>
+        <p id="labelNoShare">Cette liste n'est partagé avec aucun utilisateur</p>
+        <table id="shareTable" class="striped centered" style="display: none">
+            <thead>
+            <tr>
+                <th>Nom d'utilisateur</th>
+                <th>mail</th>
+            </tr>
+            </thead>
+            <tbody id="shareBodyTable">
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-close waves-effect waves-green btn-flat">Ok</button>
     </div>
 </div>
