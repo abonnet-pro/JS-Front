@@ -20,4 +20,19 @@ class UserAccountAPI extends BaseAPI
             }
         }).catch(err => reject(err)))
     }
+
+    insert(displayname, login, password)
+    {
+        this.headers.set('Content-Type', 'application/x-www-form-urlencoded')
+        return fetch(`${this.url}/create`, {
+            method: "POST",
+            headers: this.headers,
+            body: `displayname=${displayname}&login=${login}&password=${password}`
+        })
+    }
+
+    getUsersLikeLogin(login)
+    {
+        return fetchJSON(`${this.url}/${login}`, this.token)
+    }
 }

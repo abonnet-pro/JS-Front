@@ -1,6 +1,5 @@
 class BaseFormController extends BaseController
 {
-
     constructor(secured)
     {
         super(secured)

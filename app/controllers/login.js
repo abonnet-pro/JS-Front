@@ -12,6 +12,40 @@ class LoginController extends BaseFormController
         window.location.replace("login.html")
     }
 
+    displayInscription()
+    {
+        $("#inputDisplayName").value = ""
+        $("#inputLogin").value = ""
+        $("#inputPassword").value = ""
+        $("#inputDisplayName").style.backgroundColor = ""
+        $("#inputLogin").style.backgroundColor = ""
+        $("#inputPassword").style.backgroundColor = ""
+        this.getModal("#addUser").open()
+    }
+
+    async saveUser()
+    {
+        let displayName = this.validateRequiredField("#inputDisplayName", "Nom d'utilisateur")
+        let login = this.validateRequiredField("#inputLogin", "Login")
+        let password = this.validateRequiredField("#inputPassword", "Mot de passe")
+        if((displayName != null) && (login != null) && (password != null))
+        {
+           switch(await this.model.insertUser(displayName, login, password))
+           {
+               case 200:
+                   this.displayInscriptionMessage();
+                   $("#fieldLogin").value = login
+                   this.getModal("#addUser").close()
+                   break
+               case 406:
+                   this.displayLoginInvalid();
+                   break
+               default:
+                   this.displayServiceError()
+           }
+        }
+    }
+
     async authenticate()
     {
         let login = this.validateRequiredField('#fieldLogin', 'Adresse e-mail')

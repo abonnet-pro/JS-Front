@@ -38,6 +38,13 @@ class BaseController
         }; history.pushState({}, '');
     }
 
+    displayConfirmShare(userreceive, onClick)
+    {
+        $('#spanShareObject').innerText = userreceive.toString()
+        $('#btnShare').onclick = onClick
+        this.getModal('#modalConfirmShare').open()
+    }
+
     displayConfirmArchive(object, onClick)
     {
         if (object === undefined)
@@ -72,6 +79,12 @@ class BaseController
         this.getModal('#modalConfirmDelete').open()
     }
 
+    displayLoginInvalid()
+    {
+        this.toast('Inscription impossible : login non disponible')
+        $("#inputLogin").style.backgroundColor = 'antiquewhite'
+    }
+
     displayNotFoundError()
     {
         this.toast('Entité inexistante')
@@ -87,6 +100,11 @@ class BaseController
         this.toast( `<span>Supression effectuée</span><button class="btn-flat toast-action" onclick="${onUndo}">Annuler</button>`)
     }
 
+    displayInscriptionMessage()
+    {
+        this.toast("Inscription validé veuillez vous connecter")
+    }
+
     displayArchivedMessage()
     {
         this.toast( `<span>Archive effectuée</span>`)
@@ -95,5 +113,10 @@ class BaseController
     displayUndoDone()
     {
         this.toast('Opération annulée')
+    }
+
+    displayShareLoginInvalid()
+    {
+        this.toast("Veuillez selectionner un login dans la liste déroulante")
     }
 }

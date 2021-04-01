@@ -1,7 +1,11 @@
-class Model {
-    constructor() {
+class Model
+{
+    constructor()
+    {
         this.listAPI = new ListAPI()
         this.itemAPI = new ItemAPI()
+        this.userAccountAPI = new UserAccountAPI()
+        this.shareAPI = new ShareAPI()
     }
 
     async getAllList()
@@ -36,6 +40,16 @@ class Model {
         return items
     }
 
+    async getUsersLikeLogin(login)
+    {
+        let users = []
+        for(let user of await this.userAccountAPI.getUsersLikeLogin(login))
+        {
+            users.push(Object.assign(new UserAccount(), user))
+        }
+        return users
+    }
+
     insert(list)
     {
         return this.listAPI.insert(list).then(res => res.status)
@@ -44,6 +58,16 @@ class Model {
     insertItem(item)
     {
         return this.itemAPI.insert(item).then(res => res.status)
+    }
+
+    insertUser(displayName, login, password)
+    {
+        return this.userAccountAPI.insert(displayName, login, password).then(res => res.status)
+    }
+
+    insertShare(share)
+    {
+        return this.shareAPI.insert(share).then(res => res.status)
     }
 
     delete(id)

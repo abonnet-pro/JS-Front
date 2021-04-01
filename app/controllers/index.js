@@ -29,6 +29,7 @@ class IndexController extends BaseController
                                     <a class="btn tooltipped" data-position="bottom" data-tooltip="Supprimer" onclick="indexController.displayConfirmDelete(${list.id})"><i class="material-icons">delete</i></a>
                                     <button class="btn" onclick="indexController.edit(${list.id})"><i class="material-icons">edit</i></button>
                                     <button class="btn" onclick="indexController.displayConfirmArchive(${list.id})"><i class="material-icons">archive</i></button>
+                                    <button class="btn" onclick="indexController.displaySearchShare(${list.id})"><i class="material-icons">share</i></button>
                                 </td>
                             </tr>`
             }
@@ -132,6 +133,12 @@ class IndexController extends BaseController
             console.log(err)
             this.displayServiceError()
         }
+    }
+
+    displaySearchShare(listId)
+    {
+        this.listId = listId
+        this.getModal("#formShareList").open()
     }
 
     showEditForm()

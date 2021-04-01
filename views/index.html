@@ -7,6 +7,9 @@
         <ul id="nav-history" class="right hide-on-med-and-down">
             <li><a onclick="indexController.showHistory()" class="modal-trigger">Historique</a></li>
         </ul>
+        <ul id="nav-share" class="right hide-on-med-and-down">
+            <li><a onclick="" class="modal-trigger">Partage</a></li>
+        </ul>
     </div>
 </nav>
 
@@ -64,5 +67,30 @@
                 <a class="btn-floating btn-large waves-effect waves-light teal" onclick="indexController.closeForms()"><i class="material-icons right">clear</i></a>
             </div>
         </form>
+    </div>
+</div>
+
+<div id="formShareList" class="modal">
+    <div class="modal-content">
+        <h4>Partage</h4>
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s11">
+                        <input id="inputLoginShare" type="text" class="autocomplete">
+                        <label for="inputLoginShare">Login de l'utilisateur</label>
+                    </div>
+                    <div class="input-field col s1">
+                        <a class="btn" onclick="editController.displayAvailableLogin()"><i class="material-icons">search</i></a>
+                    </div>
+                </div>
+                <p class="red-text" id="loginNotFound" style="display: none">*Veuillez entrer un login existant</p>
+                <label>Liste utilisateurs</label>
+                <select class="browser-default col s12" id="userList" disabled>
+                </select>
+            </form>
+    </div>
+    <div class="modal-footer ">
+        <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="shareController.shareList()">Partager</button>
+        <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
     </div>
 </div>

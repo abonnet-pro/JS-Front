@@ -30,3 +30,34 @@ class Item
         return this.label
     }
 }
+
+class UserAccount
+{
+    constructor(displayname, login)
+    {
+        this.displayname = displayname
+        this.login = login
+    }
+
+    toString()
+    {
+        return (`${this.displayname} (${this.login})`)
+    }
+}
+
+class Share
+{
+    constructor(iduserreceive, idlist, modification)
+    {
+        this.id = null
+        this.idusersend = null
+        this.iduserreceive = iduserreceive
+        this.idlist = idlist
+        this.modification = modification
+    }
+
+    toString()
+    {
+
+    }
+}

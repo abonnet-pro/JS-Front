@@ -32,6 +32,16 @@
         </div>
     </div>
 
+    <div id="modalConfirmShare" class="modal">
+        <div class="modal-content">
+            <h4>Partager</h4>
+            <p>Etes vous sûr de vouloir partager votre liste avec <span id="spanShareObject"></span> ?</p>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-close waves-effect waves-green btn-flat" id="btnShare">Oui</button>
+        </div>
+    </div>
+
     <script type="application/ecmascript" src="app/tools.js"></script>
     <script type="application/ecmascript" src="app/model/classes.js"></script>
     <script type="application/ecmascript" src="app/model/model.js"></script>
@@ -40,9 +50,11 @@
     <script type="application/ecmascript" src="app/services/listapi.js"></script>
     <script type="application/ecmascript" src="app/services/itemapi.js"></script>
     <script type="application/ecmascript" src="app/services/useraccountapi.js"></script>
+    <script type="application/ecmascript" src="app/services/shareapi.js"></script>
     <script type="application/ecmascript" src="app/controllers/baseformcontroller.js"></script>
     <script type="application/ecmascript" src="app/controllers/edit.js"></script>
     <script type="application/ecmascript" src="app/controllers/login.js"></script>
+    <script type="application/ecmascript" src="app/controllers/share.js"></script>
     <script>navigate("index")</script>
 </body>
 </html>

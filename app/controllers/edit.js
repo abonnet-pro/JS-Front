@@ -131,6 +131,43 @@ class EditController extends BaseFormController
             }
         }
     }
+
+    async displayAvailableLogin()
+    {
+        let login = this.validateRequiredField('#inputLoginShare', 'Login')
+        let html = ''
+
+        if(login != null)
+        {
+            try
+            {
+                let users = await this.model.getUsersLikeLogin(login)
+                if(users.length === 0)
+                {
+                    $("#loginNotFound").style.display = "block"
+                    $("#userList").disabled = true
+                }
+                else
+                {
+                    $("#loginNotFound").style.display = "none"
+                    $("#userList").disabled = false
+                }
+
+                for(let user of users)
+                {
+                    html += `<option value="${user.id}">${user.toString()}</option>`
+                }
+                $("#userList").innerHTML = html
+            }
+            catch (e)
+            {
+                console.log(e)
+                this.displayServiceError()
+            }
+        }
+
+    }
+
 }
 
 window.editController = new EditController()
