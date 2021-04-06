@@ -119,4 +119,9 @@ class BaseController
     {
         this.toast("Veuillez selectionner un login dans la liste déroulante")
     }
+
+    displayShareInvalid()
+    {
+        this.toast("Cette liste a déjà été partagé avec cet utilisateur")
+    }
 }

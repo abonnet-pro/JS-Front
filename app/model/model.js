@@ -90,6 +90,11 @@ class Model
         return this.itemAPI.delete(id).then(res => res.status)
     }
 
+    deleteShare(id)
+    {
+        return this.shareAPI.delete(id).then(res => res.status)
+    }
+
     update(list)
     {
         return this.listAPI.update(list).then(res => res.status)
@@ -98,6 +103,24 @@ class Model
     updateItem(item)
     {
         return this.itemAPI.update(item).then(res => res.status)
+    }
+
+    async checkShareExist(idreceive, idlist)
+    {
+        try
+        {
+            let shares = []
+            for (let share of await this.shareAPI.checkShareExist(idreceive, idlist))
+            {
+                shares.push(Object.assign(new Share(), share))
+            }
+            return shares
+        }
+        catch (e)
+        {
+            if (e === 404) return null
+            return undefined
+        }
     }
 
     async getList(id)
@@ -135,6 +158,20 @@ class Model
         {
             const user = Object.assign(new UserAccount(), await this.userAccountAPI.get(id))
             return user
+        }
+        catch (e)
+        {
+            if (e === 404) return null
+            return undefined
+        }
+    }
+
+    async getShare(id)
+    {
+        try
+        {
+            const share = Object.assign(new Share(), await this.shareAPI.get(id))
+            return share
         }
         catch (e)
         {

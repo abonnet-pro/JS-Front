@@ -57,4 +57,9 @@ class Share
         this.idlist = idlist
         this.modification = modification
     }
+
+    toString()
+    {
+        return `le partage`
+    }
 }

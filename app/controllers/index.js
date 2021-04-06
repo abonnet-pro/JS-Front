@@ -140,6 +140,7 @@ class IndexController extends BaseController
         this.listId = listId
         $("#inputLoginShare").value = null
         $("#inputLoginShare").style.backgroundColor = ""
+        $("#modificationState").checked = false
         $("#userList").innerHTML = null
         $("#userList").disabled = true
         this.getModal("#formShareList").open()

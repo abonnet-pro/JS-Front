@@ -19,4 +19,20 @@ class ShareAPI extends BaseAPI
     {
         return fetchJSON(`${this.url}/send/${id}`, this.token)
     }
+
+    delete(id)
+    {
+        this.headers.delete('Content-Type')
+        return fetch(`${this.url}/${id}`, { method: 'DELETE', headers: this.headers })
+    }
+
+    get(id)
+    {
+        return fetchJSON(`${this.url}/${id}`, this.token)
+    }
+
+    checkShareExist(idreceive, idlist)
+    {
+        return fetchJSON(`${this.url}/check/${idreceive}/${idlist}`, this.token)
+    }
 }

@@ -80,7 +80,7 @@ class EditController extends BaseFormController
             {
                 if(await this.model.insertItem(new Item(indexController.listId, label, quantity)) === 200)
                 {
-                    this.toast("L'ingrédient' a bien été inséré")
+                    this.toast("L'ingrédient a bien été inséré")
                     this.clearField('#inputLabelItem')
                     this.clearField('#inputQuantityItem')
                     await itemController.displayAllItem()
