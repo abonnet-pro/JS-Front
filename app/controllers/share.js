@@ -83,6 +83,7 @@ class ShareController extends BaseController
         try
         {
             const share = await this.model.getShare(id)
+            const useraccount = await this.model.getUser(share.iduserreceive)
             super.displayConfirmDelete(share, async () => {
                 switch (await this.model.deleteShare(id))
                 {
@@ -99,7 +100,14 @@ class ShareController extends BaseController
                     default:
                         this.displayServiceError()
                 }
-                this.displayShareList()
+                if(indexController.login === useraccount.login)
+                {
+                    navigate("index")
+                }
+                else
+                {
+                    this.displayShareList()
+                }
             })
         } catch (err) {
             console.log(err)
@@ -117,6 +125,7 @@ class ShareController extends BaseController
                     this.deletedShare = null
                     this.displayUndoDone()
                     this.displayShareList()
+                    indexController.displayAllShareList()
                 }
             }).catch(_ => this.displayServiceError())
         }

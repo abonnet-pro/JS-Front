@@ -5,10 +5,15 @@ class IndexController extends BaseController
         super(true)
         this.tableAllList = $('#tableAllList')
         this.tableBodyAllList = $('#tableBodyAllList')
+        this.tableAllListShare = $("#tableAllListShare")
+        this.tableBodyAllListShare = $("#tableBodyAllListShare")
         this.formEditList = $('#formEditList')
         this.formUpdateList = $("#formUpdateList")
+        this.formUpdateShareList = $("#formUpdateShareList")
         this.btnAddList = $("#btnAddList")
+        this.login = sessionStorage.getItem("login")
         this.displayAllList()
+        this.displayAllShareList()
     }
 
     async displayAllList()
@@ -41,10 +46,67 @@ class IndexController extends BaseController
         }
     }
 
+    async displayAllShareList()
+    {
+        let content = ''
+        this.tableAllListShare.style.display = "none"
+        this.formUpdateShareList.style.display = "none"
+
+        try
+        {
+            for (const list of await this.model.getAllShareList())
+            {
+                const date = list.date.toLocaleDateString()
+                content += `<tr>
+                                <td><a class="btn transparent black-text" onclick="indexController.navigateItemList('${list.id}')">${list.shop}</a></td>
+                                <td>${date}</td>
+                                <td class="icon">
+                                    <a class="btn tooltipped" data-position="bottom" data-tooltip="Supprimer" onclick="indexController.displayConfirmDelete(${list.id})"><i class="material-icons">delete</i></a>
+                                    <button class="btn" onclick="indexController.editShare(${list.id})"><i class="material-icons">edit</i></button>
+                                    <button class="btn" onclick="indexController.displayConfirmArchive(${list.id})"><i class="material-icons">archive</i></button>
+                                </td>
+                            </tr>`
+            }
+            this.tableBodyAllListShare.innerHTML = content
+            this.tableAllListShare.style.display = "block"
+        } catch (err) {
+            console.log(err)
+            this.displayServiceError()
+        }
+    }
+
     navigateItemList(listId)
     {
         this.listId = listId
         navigate("item")
+    }
+
+    async editShare(id)
+    {
+        try
+        {
+            const object = await this.model.getList(id)
+            if (object === undefined)
+            {
+                this.displayServiceError()
+                return
+            }
+            if (object === null)
+            {
+                this.displayNotFoundError()
+                return
+            }
+            this.showShareForm()
+            this.selectedList = object
+            $("#inputUpdateShareShop").value = this.selectedList.shop
+            $("#inputUpdateShareDate").value = this.selectedList.date.toISOString().substr(0, 10)
+            $("#inputUpdateShareShop").focus()
+        }
+        catch (err)
+        {
+            console.log(err)
+            this.displayServiceError()
+        }
     }
 
     async edit(id)
@@ -98,6 +160,7 @@ class IndexController extends BaseController
                         this.displayServiceError()
                 }
                 this.displayAllList()
+                this.displayAllShareList()
             })
         }
         catch (e) {
@@ -160,6 +223,20 @@ class IndexController extends BaseController
         this.formEditList.style.display = "block"
         this.formUpdateList.style.display = "none"
         this.btnAddList.style.display = "none"
+    }
+
+    showShareForm()
+    {
+        $("#inputUpdateShareShop").style.backgroundColor = ""
+        $("#inputUpdateShareDate").style.backgroundColor = ""
+        $("#inputUpdateShareShop").value = ""
+        $("#inputUpdateShareDate").value = ""
+        $("#formUpdateShareList").style.display = "block"
+    }
+
+    closeShareForm()
+    {
+        $("#formUpdateShareList").style.display = "none"
     }
 
     closeForms()

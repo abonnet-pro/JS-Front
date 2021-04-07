@@ -40,6 +40,17 @@ class Model
         return items
     }
 
+    async getAllShareList()
+    {
+        let lists = []
+        for (let list of await this.listAPI.getAllShareList())
+        {
+            list.date = new Date(list.date)
+            lists.push(Object.assign(new List(), list))
+        }
+        return lists
+    }
+
     async getUsersLikeLogin(login)
     {
         let users = []

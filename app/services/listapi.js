@@ -15,6 +15,11 @@ class ListAPI extends BaseAPI
         return fetchJSON(`${this.url}/archived`, this.token)
     }
 
+    getAllShareList()
+    {
+        return fetchJSON(`${this.url}/share`, this.token)
+    }
+
     insert(list)
     {
         this.headers.set( 'Content-Type', 'application/json' )

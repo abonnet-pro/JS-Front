@@ -37,7 +37,7 @@ class UserAccount
     {
         this.id = null
         this.displayname = displayname
-        this.displayname = login
+        this.login = login
         this.challenge = null
     }
 

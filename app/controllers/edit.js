@@ -38,6 +38,39 @@ class EditController extends BaseFormController
         }
     }
 
+    async updateShareList()
+    {
+        let shop = this.validateRequiredField('#inputUpdateShareShop', 'Magasin')
+        let date = this.validateRequiredField("#inputUpdateShareDate", 'Date')
+
+        if((shop != null) && (date != null))
+        {
+            const dateList = new Date(date)
+            indexController.selectedList.shop = shop
+            indexController.selectedList.date = dateList
+            try
+            {
+                if (await this.model.update(indexController.selectedList) === 200)
+                {
+                    this.toast("La liste a bien été modifé")
+                    this.clearField('#inputUpdateShareShop')
+                    this.clearField('#inputUpdateShareDate')
+                    indexController.selectedList = null
+                    await indexController.displayAllShareList()
+                }
+                else
+                {
+                    this.displayServiceError()
+                }
+            }
+            catch(err)
+            {
+                console.log(err)
+                this.displayServiceError()
+            }
+        }
+    }
+
     async saveList()
     {
         let shop = this.validateRequiredField('#inputShopList', 'Magasin')
