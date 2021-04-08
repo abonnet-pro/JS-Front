@@ -107,6 +107,12 @@ class EditController extends BaseFormController
         let label = this.validateRequiredField('#inputLabelItem', 'Nom')
         let quantity = this.validateRequiredField("#inputQuantityItem", 'Quantité')
 
+        if(!$("#inputQuantityItem").validity.valid)
+        {
+            this.displayItemNumberError()
+            return
+        }
+
         if((label != null) && (quantity != null))
         {
             try

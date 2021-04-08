@@ -130,4 +130,9 @@ class BaseController
         this.toast("Veuillez saisir une adresse email correcte")
         $("#inputLogin").style.backgroundColor = 'antiquewhite'
     }
+
+    displayItemNumberError()
+    {
+        this.toast("Veuillez saisir un nombre d'ingredient correct")
+    }
 }
