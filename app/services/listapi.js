@@ -7,46 +7,52 @@ class ListAPI extends BaseAPI
 
     getAllList()
     {
-        return fetchJSON(this.url, this.token)
+        return fetchJSON(this.url, window.token)
     }
 
     getAllArchivedList()
     {
-        return fetchJSON(`${this.url}/archived`, this.token)
+        return fetchJSON(`${this.url}/archived`, window.token)
     }
 
     getAllShareList()
     {
-        return fetchJSON(`${this.url}/share`, this.token)
+        return fetchJSON(`${this.url}/share`, window.token)
     }
 
     insert(list)
     {
-        this.headers.set( 'Content-Type', 'application/json' )
+        const header = new Headers()
+        header.append("Authorization", `Bearer ${window.token}`)
+        header.set( 'Content-Type', 'application/json' )
         return fetch(this.url, {
             method: 'POST',
-            headers: this.headers,
+            headers: header,
             body: JSON.stringify(list)
         })
     }
 
     get(id)
     {
-        return fetchJSON(`${this.url}/${id}`, this.token)
+        return fetchJSON(`${this.url}/${id}`, window.token)
     }
 
     delete(id)
     {
+        const header = new Headers()
+        header.append("Authorization", `Bearer ${window.token}`)
         this.headers.delete('Content-Type')
-        return fetch(`${this.url}/${id}`, { method: 'DELETE', headers : this.headers })
+        return fetch(`${this.url}/${id}`, { method: 'DELETE', headers : header })
     }
 
     update(list)
     {
-        this.headers.set( 'Content-Type', 'application/json' )
+        const header = new Headers()
+        header.append("Authorization", `Bearer ${window.token}`)
+        header.set( 'Content-Type', 'application/json' )
         return fetch(this.url, {
             method: 'PUT',
-            headers: this.headers,
+            headers: header,
             body: JSON.stringify(list)
         })
     }

@@ -7,36 +7,42 @@ class ItemAPI extends BaseAPI
 
     getAllItemByList(id)
     {
-        return fetchJSON(`${this.url}/list/${id}`, this.token)
+        return fetchJSON(`${this.url}/list/${id}`, window.token)
     }
 
     insert(item)
     {
-        this.headers.set( 'Content-Type', 'application/json' )
+        const header = new Headers()
+        header.append("Authorization", `Bearer ${window.token}`)
+        header.set( 'Content-Type', 'application/json' )
         return fetch(this.url, {
             method: 'POST',
-            headers: this.headers,
+            headers: header,
             body: JSON.stringify(item)
         })
     }
 
     get(id)
     {
-        return fetchJSON(`${this.url}/${id}`, this.token)
+        return fetchJSON(`${this.url}/${id}`, window.token)
     }
 
     delete(id)
     {
-        this.headers.delete('Content-Type')
-        return fetch(`${this.url}/${id}`, { method: 'DELETE', headers: this.headers })
+        const header = new Headers()
+        header.append("Authorization", `Bearer ${window.token}`)
+        header.delete('Content-Type')
+        return fetch(`${this.url}/${id}`, { method: 'DELETE', headers: header })
     }
 
     update(item)
     {
-        this.headers.set( 'Content-Type', 'application/json' )
+        const header = new Headers()
+        header.append("Authorization", `Bearer ${window.token}`)
+        header.set( 'Content-Type', 'application/json' )
         return fetch(this.url, {
             method: 'PUT',
-            headers: this.headers,
+            headers: header,
             body: JSON.stringify(item)
         })
     }

@@ -1,4 +1,4 @@
-<nav>
+<nav xmlns="http://www.w3.org/1999/html">
     <div class="nav-wrapper">
         <a id="itemTitle" class="brand-logo">Listes de course</a>
         <ul id="nav-deconexion" class="right hide-on-med-and-down">
@@ -10,98 +10,100 @@
     </div>
 </nav>
 
-<div id="divMyList" style="float:left">
-    <h1 class="center-align">Mes listes</h1>
+<div class="row col s12">
+    <div id="divMyList" class="col s6">
+        <h1 class="center-align">Mes listes</h1>
+            <table id="tableAllList" class="striped centered">
+                <thead>
+                <tr>
+                    <th>Magasin</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody id="tableBodyAllList">
+                </tbody>
+            </table>
 
-    <table id="tableAllList" class="striped centered">
-        <thead>
-        <tr>
-            <th>Magasin</th>
-            <th>Date</th>
-        </tr>
-        </thead>
-        <tbody id="tableBodyAllList">
-        </tbody>
-    </table>
+        <div id="form">
+            <a id="btnAddList" class="btn-floating btn-large teal center-align" onclick="indexController.showForm()"><i class="material-icons">add</i></a>
 
+            <div id="formEditList" style="display: none">
+                <div class="row">
+                    <form class="col s12">
+                        <div class="input-field col s4">
+                            <input id="inputShopList" type="text" class="validate">
+                            <label for="inputShopList">Magasin</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="inputDateList" type="date" class="validate">
+                            <label for="inputDateList">Date</label>
+                        </div>
+                        <div class="input-field col s2">
+                            <a class="btn-floating btn-large waves-effect waves-light teal" onclick="editController.saveList()"><i class="material-icons right">check</i></a>
+                        </div>
+                        <div class="input-field col s2">
+                            <a class="btn-floating btn-large waves-effect waves-light teal" onclick="indexController.closeForms()"><i class="material-icons right">clear</i></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-    <a id="btnAddList" class="btn-floating btn-large waves-effect waves-light teal" onclick="indexController.showForm()"><i class="material-icons">add</i></a>
-
-    <div id="formEditList" style="display: none">
-        <div class="row">
-            <form class="col s12">
-                <div class="input-field col s4">
-                    <input id="inputShopList" type="text" class="validate">
-                    <label for="inputShopList">Magasin</label>
+            <div id="formUpdateList" style="display: none">
+                <div class="row">
+                    <form class="col s12">
+                        <div class="input-field col s4">
+                            <input id="inputUpdateShop" type="text" class="validate">
+                            <label for="inputUpdateShop">Magasin</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="inputUpdateDate" type="date" class="validate">
+                            <label for="inputUpdateDate">Date</label>
+                        </div>
+                        <div class="input-field col s2">
+                            <a class="btn-floating btn-large waves-effect waves-light teal" onclick="editController.updateList()"><i class="material-icons right">check</i></a>
+                        </div>
+                        <div class="input-field col s2">
+                            <a class="btn-floating btn-large waves-effect waves-light teal" onclick="indexController.closeForms()"><i class="material-icons right">clear</i></a>
+                        </div>
+                    </form>
                 </div>
-                <div class="input-field col s4">
-                    <input id="inputDateList" type="date" class="validate">
-                    <label for="inputDateList">Date</label>
-                </div>
-                <div class="input-field col s2">
-                    <a class="btn-floating btn-large waves-effect waves-light teal" onclick="editController.saveList()"><i class="material-icons right">check</i></a>
-                </div>
-                <div class="input-field col s2">
-                    <a class="btn-floating btn-large waves-effect waves-light teal" onclick="indexController.closeForms()"><i class="material-icons right">clear</i></a>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 
-    <div id="formUpdateList" style="display: none">
-        <div class="row">
-            <form class="col s12">
-                <div class="input-field col s4">
-                    <input id="inputUpdateShop" type="text" class="validate">
-                    <label for="inputUpdateShop">Magasin</label>
-                </div>
-                <div class="input-field col s4">
-                    <input id="inputUpdateDate" type="date" class="validate">
-                    <label for="inputUpdateDate">Date</label>
-                </div>
-                <div class="input-field col s2">
-                    <a class="btn-floating btn-large waves-effect waves-light teal" onclick="editController.updateList()"><i class="material-icons right">check</i></a>
-                </div>
-                <div class="input-field col s2">
-                    <a class="btn-floating btn-large waves-effect waves-light teal" onclick="indexController.closeForms()"><i class="material-icons right">clear</i></a>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+    <div id="divShareList" class="col s6">
+        <h1 class="center-align">Listes partagées</h1>
 
-<div id="divShareList" style="float:right">
-    <h1 class="center-align">Listes partagées</h1>
+        <table id="tableAllListShare" class="striped centered">
+            <thead>
+            <tr>
+                <th>Magasin</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody id="tableBodyAllListShare">
+            </tbody>
+        </table>
 
-    <table id="tableAllListShare" class="striped centered">
-        <thead>
-        <tr>
-            <th>Magasin</th>
-            <th>Date</th>
-        </tr>
-        </thead>
-        <tbody id="tableBodyAllListShare">
-        </tbody>
-    </table>
-
-    <div id="formUpdateShareList" style="display: none">
-        <div class="row">
-            <form class="col s12">
-                <div class="input-field col s4">
-                    <input id="inputUpdateShareShop" type="text" class="validate">
-                    <label for="inputUpdateShareShop">Magasin</label>
-                </div>
-                <div class="input-field col s4">
-                    <input id="inputUpdateShareDate" type="date" class="validate">
-                    <label for="inputUpdateShareDate">Date</label>
-                </div>
-                <div class="input-field col s2">
-                    <a class="btn-floating btn-large waves-effect waves-light teal" onclick="editController.updateShareList()"><i class="material-icons right">check</i></a>
-                </div>
-                <div class="input-field col s2">
-                    <a class="btn-floating btn-large waves-effect waves-light teal" onclick="indexController.closeShareForm()"><i class="material-icons right">clear</i></a>
-                </div>
-            </form>
+        <div id="formUpdateShareList" style="display: none">
+            <div class="row">
+                <form class="col s12">
+                    <div class="input-field col s4">
+                        <input id="inputUpdateShareShop" type="text" class="validate">
+                        <label for="inputUpdateShareShop">Magasin</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="inputUpdateShareDate" type="date" class="validate">
+                        <label for="inputUpdateShareDate">Date</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <a class="btn-floating btn-large waves-effect waves-light teal" onclick="editController.updateShareList()"><i class="material-icons right">check</i></a>
+                    </div>
+                    <div class="input-field col s2">
+                        <a class="btn-floating btn-large waves-effect waves-light teal" onclick="indexController.closeShareForm()"><i class="material-icons right">clear</i></a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

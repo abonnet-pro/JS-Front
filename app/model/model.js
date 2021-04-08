@@ -51,6 +51,16 @@ class Model
         return lists
     }
 
+    async getShareReceive()
+    {
+        let shares = []
+        for(let share of await this.shareAPI.getShareReceive())
+        {
+            shares.push(Object.assign(new Share(), share))
+        }
+        return shares
+    }
+
     async getUsersLikeLogin(login)
     {
         let users = []
@@ -116,6 +126,11 @@ class Model
         return this.itemAPI.update(item).then(res => res.status)
     }
 
+    refreshToken()
+    {
+        return this.userAccountAPI.refreshToken().then(res => res.token)
+    }
+
     async checkShareExist(idreceive, idlist)
     {
         try
@@ -136,17 +151,9 @@ class Model
 
     async getList(id)
     {
-        try
-        {
-            const list = Object.assign(new List(), await this.listAPI.get(id))
-            list.date = new Date(list.date)
-            return list
-        }
-        catch (e)
-        {
-            if (e === 404) return null
-            return undefined
-        }
+        const list = Object.assign(new List(), await this.listAPI.get(id))
+        list.date = new Date(list.date)
+        return list
     }
 
     async getItem(id)

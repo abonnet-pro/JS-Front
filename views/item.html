@@ -1,11 +1,12 @@
 <nav>
     <div class="nav-wrapper">
         <a id="itemTitle" class="brand-logo"></a>
+        <a id="itemDisplayName" class="brand-logo center"></a>
         <ul class="right hide-on-med-and-down">
-            <li><a onclick="indexController.displayConfirmArchive(indexController.listId)" class="modal-trigger">Terminer la liste</a></li>
+            <li><a id="nav-end" onclick="indexController.displayConfirmArchive(indexController.listId)" class="modal-trigger">Terminer la liste</a></li>
         </ul>
         <ul class="right hide-on-med-and-down">
-            <li><a onclick="itemController.newItem()" class="modal-trigger">Ajouter ingrédient</a></li>
+            <li><a id="nav-add" onclick="itemController.newItem()" class="modal-trigger">Ajouter ingrédient</a></li>
         </ul>
         <ul class="right hide-on-med-and-down">
             <li><a onclick="shareController.displayShareList()" class="modal-trigger">Voir les partages</a></li>

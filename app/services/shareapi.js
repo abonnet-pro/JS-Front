@@ -7,32 +7,41 @@ class ShareAPI extends BaseAPI
 
     insert(share)
     {
-        this.headers.set( 'Content-Type', 'application/json' )
+        const header = new Headers()
+        header.append("Authorization", `Bearer ${window.token}`)
+        header.set( 'Content-Type', 'application/json' )
         return fetch(this.url, {
             method: 'POST',
-            headers: this.headers,
+            headers: header,
             body: JSON.stringify(share)
         })
     }
 
     getShareSendByList(id)
     {
-        return fetchJSON(`${this.url}/send/${id}`, this.token)
+        return fetchJSON(`${this.url}/send/${id}`, window.token)
+    }
+
+    getShareReceive()
+    {
+        return fetchJSON(this.url, window.token)
     }
 
     delete(id)
     {
-        this.headers.delete('Content-Type')
-        return fetch(`${this.url}/${id}`, { method: 'DELETE', headers: this.headers })
+        const header = new Headers()
+        header.append("Authorization", `Bearer ${window.token}`)
+        header.delete('Content-Type')
+        return fetch(`${this.url}/${id}`, { method: 'DELETE', headers: header })
     }
 
     get(id)
     {
-        return fetchJSON(`${this.url}/${id}`, this.token)
+        return fetchJSON(`${this.url}/${id}`, window.token)
     }
 
     checkShareExist(idreceive, idlist)
     {
-        return fetchJSON(`${this.url}/check/${idreceive}/${idlist}`, this.token)
+        return fetchJSON(`${this.url}/check/${idreceive}/${idlist}`, window.token)
     }
 }

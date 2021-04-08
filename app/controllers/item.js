@@ -4,12 +4,20 @@ class ItemController extends BaseController
     {
         super(true)
         this.displayAllItem()
+        if(indexController.modification === false)
+        {
+            $("#nav-add").style.display = 'none'
+            $("#nav-end").style.display = 'none'
+        }
+        if(indexController.displayName) $("#itemDisplayName").innerText = indexController.displayName
     }
 
     async displayAllItem()
     {
         try
         {
+            window.token = await this.model.refreshToken()
+            sessionStorage.setItem("token", window.token)
             let content = ""
             const list = await this.model.getList(indexController.listId)
             const items = await this.model.getAllItemByList(list.id)
@@ -18,30 +26,35 @@ class ItemController extends BaseController
             for(let item of items)
             {
                 let checked = item.checked ? "checked" : ""
+                let disabled = (indexController.modification === false) ? "disabled" : ""
                 content += `<tr>
-                        <td>
-                            <label>
-                            <input type="checkbox" onchange="itemController.updateCheck(${item.id})" ${checked}/>
-                            <span></span>
-                            </label>
-                        </td>
-                        <td>${item.label}</td>
-                        <td>${item.quantity}</td>
-                        <td>
-                            <button type="button" class="red darken-4 btn" onclick="itemController.displayConfirmDelete(${item.id})">
-                            <i class="small material-icons">delete</i>
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn" onclick="itemController.edit(${item.id})">
-                            <i class="small material-icons">edit</i>
-                            </button>
-                        </td>
-                     </tr>`
+                                <td>
+                                    <label>
+                                    <input type="checkbox" ${disabled} onchange="itemController.updateCheck(${item.id})" ${checked}/>
+                                    <span></span>
+                                    </label>
+                                </td>
+                                <td>${item.label}</td>
+                                <td>${item.quantity}</td>
+                                <td>
+                                    <button type="button" class="red darken-4 btn ${disabled}" onclick="itemController.displayConfirmDelete(${item.id})">
+                                    <i class="small material-icons">delete</i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn ${disabled}" onclick="itemController.edit(${item.id})">
+                                    <i class="small material-icons">edit</i>
+                                    </button>
+                                </td>
+                            </tr>`
             }
             $('#itemBodyTable').innerHTML = content
         }
         catch (e) {
+            if(e === 401)
+            {
+                window.location.replace("login.html")
+            }
             console.log(e)
             this.displayServiceError()
         }

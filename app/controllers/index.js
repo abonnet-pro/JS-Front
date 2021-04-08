@@ -25,7 +25,10 @@ class IndexController extends BaseController
         this.btnAddList.style.display = "block"
 
         try {
-            for (const list of await this.model.getAllList()) {
+            window.token = await this.model.refreshToken()
+            sessionStorage.setItem("token", window.token)
+            for (const list of await this.model.getAllList())
+            {
                 const date = list.date.toLocaleDateString()
                 content += `<tr>
                                 <td><a class="btn transparent black-text" onclick="indexController.navigateItemList('${list.id}')">${list.shop}</a></td>
@@ -41,6 +44,10 @@ class IndexController extends BaseController
             this.tableBodyAllList.innerHTML = content
             this.tableAllList.style.display = "block"
         } catch (err) {
+            if(err === 401)
+            {
+                window.location.replace("login.html")
+            }
             console.log(err)
             this.displayServiceError()
         }
@@ -54,19 +61,24 @@ class IndexController extends BaseController
 
         try
         {
-            for (const list of await this.model.getAllShareList())
+            for(const share of await this.model.getShareReceive())
             {
+                const list = await this.model.getList(share.idlist)
+                const user = await this.model.getUser(list.iduser)
                 const date = list.date.toLocaleDateString()
+                const disabled = share.modification ? "" : "disabled"
+
                 content += `<tr>
-                                <td><a class="btn transparent black-text" onclick="indexController.navigateItemList('${list.id}')">${list.shop}</a></td>
+                                <td><a class="btn transparent black-text" onclick="indexController.navigateItemList(${list.id}, ${share.modification}, '${user.displayname}')">${list.shop}</a></td>
                                 <td>${date}</td>
                                 <td class="icon">
-                                    <a class="btn tooltipped" data-position="bottom" data-tooltip="Supprimer" onclick="indexController.displayConfirmDelete(${list.id})"><i class="material-icons">delete</i></a>
-                                    <button class="btn" onclick="indexController.editShare(${list.id})"><i class="material-icons">edit</i></button>
-                                    <button class="btn" onclick="indexController.displayConfirmArchive(${list.id})"><i class="material-icons">archive</i></button>
+                                    <a class="btn tooltipped ${disabled}" data-position="bottom" data-tooltip="Supprimer" onclick="indexController.displayConfirmDelete(${list.id})"><i class="material-icons">delete</i></a>
+                                    <button class="btn ${disabled}" onclick="indexController.editShare(${list.id})"><i class="material-icons">edit</i></button>
+                                    <button class="btn ${disabled}" onclick="indexController.displayConfirmArchive(${list.id})"><i class="material-icons">archive</i></button>
                                 </td>
                             </tr>`
             }
+
             this.tableBodyAllListShare.innerHTML = content
             this.tableAllListShare.style.display = "block"
         } catch (err) {
@@ -75,9 +87,11 @@ class IndexController extends BaseController
         }
     }
 
-    navigateItemList(listId)
+    navigateItemList(listId, modification, displayName)
     {
         this.listId = listId
+        this.modification = modification
+        this.displayName = displayName
         navigate("item")
     }
 

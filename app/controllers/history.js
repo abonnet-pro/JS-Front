@@ -22,6 +22,8 @@ class HistoryController extends BaseController {
     {
         try
         {
+            window.token = await this.model.refreshToken()
+            sessionStorage.setItem("token", window.token)
             const historyLists = await this.model.getAllArchivedList()
             let html = ""
             for(let historyList of historyLists)
@@ -37,6 +39,10 @@ class HistoryController extends BaseController {
             $('#historyList').innerHTML = html
         }
         catch (e) {
+            if(e === 401)
+            {
+                window.location.replace("login.html")
+            }
             console.log(e)
             this.displayServiceError()
         }

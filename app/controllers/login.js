@@ -56,6 +56,7 @@ class LoginController extends BaseFormController
                 .then(res => {
                     sessionStorage.setItem("token", res.token)
                     sessionStorage.setItem("login", login)
+                    window.token = sessionStorage.getItem("token")
                     window.location.replace("index.html")
                 })
                 .catch(err => {
