@@ -41,7 +41,7 @@ class ListAPI extends BaseAPI
     {
         const header = new Headers()
         header.append("Authorization", `Bearer ${window.token}`)
-        this.headers.delete('Content-Type')
+        header.delete('Content-Type')
         return fetch(`${this.url}/${id}`, { method: 'DELETE', headers : header })
     }
 

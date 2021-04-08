@@ -11,7 +11,7 @@
     </head>
     <body>
     <div class="container">
-        <h3>Connexion</h3>
+        <h3 class="center">Connexion</h3>
         <div>
             <div class="row">
                 <form class="col s12" id="formLogin">
@@ -27,7 +27,7 @@
                     </div>
                 </form>
             </div>
-            <div class="row">
+            <div class="row center">
                 <button class="waves-effect waves-light btn" onclick="loginController.authenticate()"><i class="material-icons right">check</i>Se connecter</button>
                 <button class="waves-effect waves-light btn" onclick="loginController.displayInscription()">S'inscrire</button>
             </div>
@@ -37,17 +37,21 @@
     <div id="addUser" class="modal">
         <div class="modal-content">
             <div class="row">
+                <h1 class="center">Inscription</h1>
                 <form>
                     <div class="row">
                         <div class="input-field">
+                            <i class="material-icons prefix">account_circle</i>
                             <input id="inputDisplayName" type="text" class="validate">
                             <label for="inputDisplayName">Nom d'utilisateur</label>
                         </div>
                         <div class="input-field">
+                            <i class="material-icons prefix">email</i>
                             <input id="inputLogin" type="email" class="validate">
                             <label for="inputLogin">Login (email)</label>
                         </div>
                         <div class="input-field">
+                            <i class="material-icons prefix">password</i>
                             <input id="inputPassword" type="password" class="validate">
                             <label for="inputPassword">Mot de passe</label>
                         </div>

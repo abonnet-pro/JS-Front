@@ -124,4 +124,10 @@ class BaseController
     {
         this.toast("Cette liste a déjà été partagé avec cet utilisateur")
     }
+
+    displayLoginError()
+    {
+        this.toast("Veuillez saisir une adresse email correcte")
+        $("#inputLogin").style.backgroundColor = 'antiquewhite'
+    }
 }

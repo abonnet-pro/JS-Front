@@ -30,19 +30,25 @@ class LoginController extends BaseFormController
         let password = this.validateRequiredField("#inputPassword", "Mot de passe")
         if((displayName != null) && (login != null) && (password != null))
         {
-           switch(await this.model.insertUser(displayName, login, password))
-           {
-               case 200:
-                   this.displayInscriptionMessage();
-                   $("#fieldLogin").value = login
-                   this.getModal("#addUser").close()
-                   break
-               case 406:
-                   this.displayLoginInvalid();
-                   break
-               default:
-                   this.displayServiceError()
-           }
+            if(!$("#inputLogin").validity.valid)
+            {
+                this.displayLoginError()
+                return
+            }
+
+            switch(await this.model.insertUser(displayName, login, password))
+            {
+                case 200:
+                    this.displayInscriptionMessage();
+                    $("#fieldLogin").value = login
+                    this.getModal("#addUser").close()
+                    break
+                case 406:
+                    this.displayLoginInvalid();
+                    break
+                default:
+                    this.displayServiceError()
+            }
         }
     }
 
