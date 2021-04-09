@@ -39,9 +39,11 @@ class LoginController extends BaseFormController
             switch(await this.model.insertUser(displayName, login, password))
             {
                 case 200:
-                    this.displayInscriptionMessage();
                     $("#fieldLogin").value = login
                     this.getModal("#addUser").close()
+                    $("#labelNoConfirmEmail").style.display = "block"
+                    this.displayInscriptionMessage()
+                    await this.sendConfirmationMail()
                     break
                 case 406:
                     this.displayLoginInvalid();
@@ -71,11 +73,29 @@ class LoginController extends BaseFormController
                     {
                         this.toast("Adresse e-mail ou mot de passe incorrect")
                     }
+                    else if(err === 403)
+                    {
+                        $("#labelNoConfirmEmail").style.display = "block"
+                    }
                     else
                     {
                         this.displayServiceError()
                     }
                 })
+        }
+    }
+
+    async sendConfirmationMail()
+    {
+        try
+        {
+            await this.model.sendConfirmationEmail($("#fieldLogin").value)
+            this.toast("email envoyé")
+        }
+        catch (e)
+        {
+            console.log(e.toString())
+            this.displayServiceError()
         }
     }
 }

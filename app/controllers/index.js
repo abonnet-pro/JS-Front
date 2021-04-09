@@ -220,6 +220,7 @@ class IndexController extends BaseController
         $("#modificationState").checked = false
         $("#userList").innerHTML = null
         $("#userList").disabled = true
+        $("#loginNotFound").style.display = "none"
         this.getModal("#formShareList").open()
     }
 

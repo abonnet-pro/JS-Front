@@ -35,6 +35,11 @@ class UserAccountAPI extends BaseAPI
         })
     }
 
+    sendConfirmationEmail(login)
+    {
+        return fetchJSON(`${this.url}/mail/${login}`)
+    }
+
     getUsersLikeLogin(login)
     {
         return fetchJSON(`${this.url}/${login}`, window.token)

@@ -131,6 +131,11 @@ class Model
         return this.userAccountAPI.refreshToken().then(res => res.token)
     }
 
+    sendConfirmationEmail(login)
+    {
+        return this.userAccountAPI.sendConfirmationEmail(login).then(res => res.status)
+    }
+
     async checkShareExist(idreceive, idlist)
     {
         try

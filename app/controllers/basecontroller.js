@@ -102,7 +102,7 @@ class BaseController
 
     displayInscriptionMessage()
     {
-        this.toast("Inscription validé veuillez vous connecter")
+        this.toast("Inscription validé")
     }
 
     displayArchivedMessage()
