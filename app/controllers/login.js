@@ -87,6 +87,7 @@ class LoginController extends BaseFormController
 
     async sendConfirmationMail()
     {
+        // TODO : corriger SyntaxError lors de l'envoi du mail
         try
         {
             await this.model.sendConfirmationEmail($("#fieldLogin").value)
@@ -98,6 +99,8 @@ class LoginController extends BaseFormController
             this.displayServiceError()
         }
     }
+
+    // TODO : fonction permettant de reinitialiser son mot de passe
 }
 
 window.loginController = new LoginController()
