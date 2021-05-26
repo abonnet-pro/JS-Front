@@ -19,7 +19,6 @@ class IndexController extends BaseController
     async displayAllList()
     {
         let content = ''
-        this.tableAllList.style.display = "none"
         this.formEditList.style.display = "none"
         this.formUpdateList.style.display = "none"
         this.btnAddList.style.display = "block"
@@ -27,7 +26,9 @@ class IndexController extends BaseController
         try {
             window.token = await this.model.refreshToken()
             sessionStorage.setItem("token", window.token)
-            for (const list of await this.model.getAllList())
+            const allList = await this.model.getAllList()
+
+            for (const list of allList)
             {
                 const date = list.date.toLocaleDateString()
                 content += `<tr>
@@ -280,6 +281,8 @@ class IndexController extends BaseController
     {
         navigate("history")
     }
+
+    // TODO : fonction permettant de modifier les informations utilisateur
 }
 
 window.indexController = new IndexController()

@@ -40,9 +40,19 @@ class UserAccountAPI extends BaseAPI
         return fetchJSON(`${this.url}/mail/${login}`)
     }
 
+    resetPassword(login)
+    {
+        return fetchJSON(`${this.url}/resetPassword/${login}`)
+    }
+
     getUsersLikeLogin(login)
     {
         return fetchJSON(`${this.url}/${login}`, window.token)
+    }
+
+    getUserByResetCode(code)
+    {
+        return fetchJSON(`${this.url}/resetCode/${code}`)
     }
 
     get(id)
@@ -65,5 +75,16 @@ class UserAccountAPI extends BaseAPI
                 reject(res.status)
             }
         }).catch(err => reject(err)))
+    }
+
+    update(user)
+    {
+        const header = new Headers()
+        header.set( 'Content-Type', 'application/json' )
+        return fetch(`${this.url}/reset`, {
+            method: 'PUT',
+            headers: header,
+            body: JSON.stringify(user)
+        })
     }
 }

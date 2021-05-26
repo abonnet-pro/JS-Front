@@ -126,6 +126,11 @@ class Model
         return this.itemAPI.update(item).then(res => res.status)
     }
 
+    updateUser(user)
+    {
+        return this.userAccountAPI.update(user).then(res => res.status)
+    }
+
     refreshToken()
     {
         return this.userAccountAPI.refreshToken().then(res => res.token)
@@ -134,6 +139,11 @@ class Model
     sendConfirmationEmail(login)
     {
         return this.userAccountAPI.sendConfirmationEmail(login).then(res => res.status)
+    }
+
+    resetPassword(login)
+    {
+        return this.userAccountAPI.resetPassword(login).then(res => res.status)
     }
 
     async checkShareExist(idreceive, idlist)
@@ -183,6 +193,20 @@ class Model
             return user
         }
         catch (e)
+        {
+            if (e === 404) return null
+            return undefined
+        }
+    }
+
+    async getUserByResetCode(code)
+    {
+        try
+        {
+            const user = Object.assign(new UserAccount(), await this.userAccountAPI.getUserByResetCode(code))
+            return user
+        }
+        catch(e)
         {
             if (e === 404) return null
             return undefined

@@ -18,12 +18,15 @@
                 <form class="col s12" id="formLogin">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="fieldLogin" type="text" class="validate" value="a.ntho42160@hotmail.fr">
+                            <input id="fieldLogin" type="text" class="validate" value="anthony.bonnet1@orange.fr">
                             <label for="fieldLogin" class="active">Adresse e-mail</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="fieldPassword" type="password" class="validate" value="azerty">
+                            <input id="fieldPassword" type="password" class="validate" value="1401">
                             <label for="fieldPassword" class="active">Mot de passe</label>
+                        </div>
+                        <div class="col s12">
+                            <a onclick="loginController.displayResetPassword()" >Mot de passe oublié</a>
                         </div>
                     </div>
                 </form>
@@ -62,6 +65,27 @@
         </div>
         <div class="modal-footer ">
             <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="loginController.saveUser()">Confirmer</button>
+            <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
+        </div>
+    </div>
+
+    <div id="resetPassword" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <h2>Mot de passe oublié ?</h2>
+                <p>Pour réinitialiser votre mot de passe, saisissez l'adresse e-mail que vous utilisez pour vous connecter à votre compte. Nous vous enverrons un lien pour modifier votre mot de passe <br>(Attention ce lien ne sera valide que pendant 30 minutes).</p>
+                <form>
+                    <div class="row">
+                        <div class="input-field">
+                            <input id="inputLoginReset" type="text" class="validate">
+                            <label for="inputLoginReset">Adresse mail</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="loginController.resetPassword()">Envoyer</button>
             <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
         </div>
     </div>

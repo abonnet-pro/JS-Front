@@ -39,6 +39,7 @@ class UserAccount
         this.displayname = displayname
         this.login = login
         this.challenge = null
+
     }
 
     toString()

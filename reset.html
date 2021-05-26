@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Reinitialisation</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="res/css/index.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <h3 id="labelReset" class="red-text text-darken-3">Réinitialiser votre mot de passe</h3>
+            <div id="divReset">
+                <p id="labelLoginReset">Saisissez votre nouveau mot de passe pour </p>
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="inputNewPassword" type="password" class="validate">
+                                <label for="inputNewPassword" class="active">Nouveau mot de passe</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <button class="waves-effect waves-light btn blue" onclick="resetController.resetPassword()">Reinitialiser le mot de passe</button>
+                </div>
+            </div>
+        </div>
+
+        <script type="application/ecmascript" src="app/tools.js"></script>
+        <script type="application/ecmascript" src="app/model/classes.js"></script>
+        <script type="application/ecmascript" src="app/model/model.js"></script>
+        <script type="application/ecmascript" src="app/controllers/basecontroller.js"></script>
+        <script type="application/ecmascript" src="app/services/baseapi.js"></script>
+        <script type="application/ecmascript" src="app/services/listapi.js"></script>
+        <script type="application/ecmascript" src="app/services/itemapi.js"></script>
+        <script type="application/ecmascript" src="app/services/useraccountapi.js"></script>
+        <script type="application/ecmascript" src="app/services/shareapi.js"></script>
+        <script type="application/ecmascript" src="app/controllers/baseformcontroller.js"></script>
+        <script type="application/ecmascript" src="app/controllers/login.js"></script>
+        <script type="application/ecmascript" src="app/controllers/reset.js"></script>
+    </body>
+</html>

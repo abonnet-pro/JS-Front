@@ -95,12 +95,35 @@ class LoginController extends BaseFormController
         }
         catch (e)
         {
-            console.log(e.toString())
+            console.log(e)
             this.displayServiceError()
         }
     }
 
-    // TODO : fonction permettant de reinitialiser son mot de passe
+    displayResetPassword()
+    {
+        $("#inputLoginReset").value = ""
+        $("#inputLoginReset").style.backgroundColor = ""
+        this.getModal("#resetPassword").open()
+    }
+
+    async resetPassword()
+    {
+        try
+        {
+            let login = this.validateRequiredField("#inputLoginReset", "Login")
+            if(login != null)
+            {
+                await this.model.resetPassword(login)
+                this.toast("email envoyé")
+            }
+        }
+        catch (e)
+        {
+            console.log(e)
+            this.displayServiceError()
+        }
+    }
 }
 
 window.loginController = new LoginController()
