@@ -131,6 +131,11 @@ class Model
         return this.userAccountAPI.update(user).then(res => res.status)
     }
 
+    updateProfil(user)
+    {
+        return this.userAccountAPI.updateProfil(user).then(res => res.status)
+    }
+
     refreshToken()
     {
         return this.userAccountAPI.refreshToken().then(res => res.token)
@@ -190,6 +195,20 @@ class Model
         try
         {
             const user = Object.assign(new UserAccount(), await this.userAccountAPI.get(id))
+            return user
+        }
+        catch (e)
+        {
+            if (e === 404) return null
+            return undefined
+        }
+    }
+
+    async getUserByLogin(login)
+    {
+        try
+        {
+            const user = Object.assign(new UserAccount(), await this.userAccountAPI.getUserByLogin(login))
             return user
         }
         catch (e)

@@ -1,0 +1,59 @@
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Profil</a>
+    </div>
+</nav>
+
+<div>
+    <div class="row">
+        <h3 class="striped centered">Votre profil</h3>
+        <a id="btnUpdateProfil" class="btn-floating btn-large red" onclick="profilController.edit()"><i class="material-icons">edit</i></a>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+        <label for="labelLogin">Adresse e-mail : </label>
+        <h5 id="labelLogin"></h5>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+        <label for="labelName">Nom d'utilisateur : </label>
+        <h5 id="labelName"></h5>
+    </div>
+    <div class="divider"></div>
+</div>
+
+<div id="updateUser" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <form>
+                <div class="row">
+                    <div class="input-field">
+                        <input id="inputLoginUpdateUser" type="text" class="validate">
+                        <label for="inputLoginUpdateUser">Login</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="inputNameUpdateUser" type="text" class="validate">
+                        <label for="inputNameUpdateUser">Nom d'utilisateur</label>
+                    </div>
+                    <label>
+                        <input id="checkUpdatePassword" type="checkbox" onchange="profilController.displayUpdatePassword()"/>
+                        <span>Modifier le mot de passe</span>
+                    </label>
+                    <div id="updatePasswordUser" class="input-field" style="display: none">
+                        <input id="inputPasswordUpdateUser" type="password" class="validate">
+                        <label for="inputPasswordUpdateUser">Nouveau mot de passe</label>
+                    </div>
+                    <div id="confirmUpdatePasswordUser" class="input-field" style="display: none">
+                        <input id="inputConfirmPasswordUpdateUser" type="password" class="validate">
+                        <label for="inputConfirmPasswordUpdateUser">Confirmation</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="editController.updateUser()">Confirmer</button>
+        <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
+    </div>
+</div>

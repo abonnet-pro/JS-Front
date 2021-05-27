@@ -87,7 +87,6 @@ class LoginController extends BaseFormController
 
     async sendConfirmationMail()
     {
-        // TODO : corriger SyntaxError lors de l'envoi du mail
         try
         {
             await this.model.sendConfirmationEmail($("#fieldLogin").value)
@@ -116,6 +115,7 @@ class LoginController extends BaseFormController
             {
                 await this.model.resetPassword(login)
                 this.toast("email envoyé")
+                this.getModal("#resetPassword").close()
             }
         }
         catch (e)

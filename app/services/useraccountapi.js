@@ -37,17 +37,32 @@ class UserAccountAPI extends BaseAPI
 
     sendConfirmationEmail(login)
     {
-        return fetchJSON(`${this.url}/mail/${login}`)
+        const header = new Headers()
+        header.set( 'Content-Type', 'application/json' )
+        return fetch(`${this.url}/mail/${login}`, {
+            method: 'GET',
+            headers: header
+        })
     }
 
     resetPassword(login)
     {
-        return fetchJSON(`${this.url}/resetPassword/${login}`)
+        const header = new Headers()
+        header.set( 'Content-Type', 'application/json' )
+        return fetch(`${this.url}/resetPassword/${login}`, {
+            method: 'GET',
+            headers: header
+        })
     }
 
     getUsersLikeLogin(login)
     {
         return fetchJSON(`${this.url}/${login}`, window.token)
+    }
+
+    getUserByLogin(login)
+    {
+        return fetchJSON(`${this.url}/login/${login}`, window.token)
     }
 
     getUserByResetCode(code)
@@ -82,6 +97,18 @@ class UserAccountAPI extends BaseAPI
         const header = new Headers()
         header.set( 'Content-Type', 'application/json' )
         return fetch(`${this.url}/reset`, {
+            method: 'PUT',
+            headers: header,
+            body: JSON.stringify(user)
+        })
+    }
+
+    updateProfil(user)
+    {
+        const header = new Headers()
+        header.append("Authorization", `Bearer ${window.token}`)
+        header.set( 'Content-Type', 'application/json' )
+        return fetch(this.url, {
             method: 'PUT',
             headers: header,
             body: JSON.stringify(user)

@@ -282,7 +282,10 @@ class IndexController extends BaseController
         navigate("history")
     }
 
-    // TODO : fonction permettant de modifier les informations utilisateur
+    showProfil()
+    {
+        navigate("profil")
+    }
 }
 
 window.indexController = new IndexController()

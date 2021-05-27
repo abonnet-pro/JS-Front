@@ -204,9 +204,54 @@ class EditController extends BaseFormController
                 this.displayServiceError()
             }
         }
-
     }
 
+    async updateUser()
+    {
+        let login = this.validateRequiredField('#inputLoginUpdateUser', 'Login')
+        let name = this.validateRequiredField("#inputNameUpdateUser", 'Nom d\'utilisateur')
+        let challenge
+
+        if($("#checkUpdatePassword").checked)
+        {
+            if($("#inputConfirmPasswordUpdateUser").value !== $("#inputPasswordUpdateUser").value)
+            {
+                this.toast("les mots de passe ne sont pas identiques")
+                return
+            }
+
+            challenge = this.validateRequiredField('#inputPasswordUpdateUser', 'Mot de passe')
+            if(challenge == null) return
+            profilController.user.challenge = challenge
+        }
+
+        profilController.user.login = login
+        profilController.user.displayname = name
+
+        if((login != null) && (name != null))
+        {
+            try
+            {
+                if (await this.model.updateProfil(profilController.user) === 200)
+                {
+                    this.toast("Votre profil a bien été modifé")
+                    this.clearField('#inputLoginUpdateUser')
+                    this.clearField('#inputNameUpdateUser')
+                    this.getModal("#updateUser").close()
+                    await profilController.displayProfilInformation()
+                }
+                else
+                {
+                    this.displayServiceError()
+                }
+            }
+            catch(err)
+            {
+                console.log(err)
+                this.displayServiceError()
+            }
+        }
+    }
 }
 
 window.editController = new EditController()
