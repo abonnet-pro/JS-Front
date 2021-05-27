@@ -180,7 +180,7 @@ class EditController extends BaseFormController
         {
             try
             {
-                let users = await this.model.getUsersLikeLogin(login)
+                let users = await this.model.getUsersLikeLoginForShare(login)
                 if(users.length === 0)
                 {
                     $("#loginNotFound").style.display = "block"

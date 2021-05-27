@@ -14,6 +14,7 @@ class IndexController extends BaseController
         this.login = sessionStorage.getItem("login")
         this.displayAllList()
         this.displayAllShareList()
+        this.checkRoles()
     }
 
     async displayAllList()
@@ -285,6 +286,24 @@ class IndexController extends BaseController
     showProfil()
     {
         navigate("profil")
+    }
+
+    showAdmin()
+    {
+        navigate("admin")
+    }
+
+    async checkRoles()
+    {
+        const roles = await this.model.getRoles(this.login)
+
+        for(let role in roles)
+        {
+            if(roles[role].role === "ADMIN")
+            {
+                $("#nav-admin").style.display = "block"
+            }
+        }
     }
 }
 

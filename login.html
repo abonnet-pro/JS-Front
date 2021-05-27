@@ -18,11 +18,11 @@
                 <form class="col s12" id="formLogin">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="fieldLogin" type="text" class="validate" value="a.ntho42160@hotmail.fr">
+                            <input id="fieldLogin" type="text" class="validate" value="anthony.bonnet1@orange.fr">
                             <label for="fieldLogin" class="active">Adresse e-mail</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="fieldPassword" type="password" class="validate" value="aze">
+                            <input id="fieldPassword" type="password" class="validate" value="1401">
                             <label for="fieldPassword" class="active">Mot de passe</label>
                         </div>
                         <div class="col s12">
@@ -58,6 +58,13 @@
                             <i class="material-icons prefix">password</i>
                             <input id="inputPassword" type="password" class="validate">
                             <label for="inputPassword">Mot de passe</label>
+                        </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix">accessibility</i>
+                                <select multiple>
+                                    <option value="1" disabled selected>Utilisateur</option>
+                                    <option value="2">Administrateur</option>
+                                </select>
                         </div>
                     </div>
                 </form>
@@ -99,6 +106,7 @@
     <script type="application/ecmascript" src="app/services/itemapi.js"></script>
     <script type="application/ecmascript" src="app/services/useraccountapi.js"></script>
     <script type="application/ecmascript" src="app/services/shareapi.js"></script>
+    <script type="application/ecmascript" src="app/services/roleapi.js"></script>
     <script type="application/ecmascript" src="app/controllers/baseformcontroller.js"></script>
     <script type="application/ecmascript" src="app/controllers/login.js"></script>
     </body>

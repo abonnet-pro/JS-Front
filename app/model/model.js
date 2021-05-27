@@ -6,6 +6,7 @@ class Model
         this.itemAPI = new ItemAPI()
         this.userAccountAPI = new UserAccountAPI()
         this.shareAPI = new ShareAPI()
+        this.roleAPI = new RoleAPI()
     }
 
     async getAllList()
@@ -59,6 +60,16 @@ class Model
             shares.push(Object.assign(new Share(), share))
         }
         return shares
+    }
+
+    async getUsersLikeLoginForShare(login)
+    {
+        let users = []
+        for(let user of await this.userAccountAPI.getUsersLikeLoginForShare(login))
+        {
+            users.push(Object.assign(new UserAccount(), user))
+        }
+        return users
     }
 
     async getUsersLikeLogin(login)
@@ -204,6 +215,24 @@ class Model
         }
     }
 
+    async getAllUsers()
+    {
+        try
+        {
+            let users = []
+            for(let user of await this.userAccountAPI.getAllUsers())
+            {
+                users.push(Object.assign(new UserAccount(), user))
+            }
+            return users
+        }
+        catch(e)
+        {
+            if (e === 404) return null
+            return undefined
+        }
+    }
+
     async getUserByLogin(login)
     {
         try
@@ -240,6 +269,24 @@ class Model
             return share
         }
         catch (e)
+        {
+            if (e === 404) return null
+            return undefined
+        }
+    }
+
+    async getRoles(login)
+    {
+        try
+        {
+            let roles = []
+            for (let role of await this.roleAPI.getRoles(login))
+            {
+                roles.push(Object.assign(new Role(), role))
+            }
+            return roles
+        }
+        catch(e)
         {
             if (e === 404) return null
             return undefined

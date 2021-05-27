@@ -55,10 +55,16 @@ class UserAccountAPI extends BaseAPI
         })
     }
 
+    getUsersLikeLoginForShare(login)
+    {
+        return fetchJSON(`${this.url}/share/${login}`, window.token)
+    }
+
     getUsersLikeLogin(login)
     {
         return fetchJSON(`${this.url}/${login}`, window.token)
     }
+
 
     getUserByLogin(login)
     {
@@ -73,6 +79,11 @@ class UserAccountAPI extends BaseAPI
     get(id)
     {
         return fetchJSON(`${this.url}/id/${id}`, window.token)
+    }
+
+    getAllUsers()
+    {
+        return fetchJSON(this.url, window.token)
     }
 
     refreshToken()

@@ -33,13 +33,17 @@ class Item
 
 class UserAccount
 {
-    constructor(displayname, login)
+    constructor(id, displayname, login, challenge, active, confirmation, confirmationdate, reset, resetdate)
     {
-        this.id = null
+        this.id = id
         this.displayname = displayname
         this.login = login
-        this.challenge = null
-
+        this.challenge = challenge
+        this.active = active
+        this.confirmation = confirmation
+        this.confirmationdate = confirmationdate
+        this.reset = reset
+        this.resetdate = resetdate
     }
 
     toString()
@@ -62,5 +66,20 @@ class Share
     toString()
     {
         return `le partage`
+    }
+}
+
+class Role
+{
+    constructor(iduser, role)
+    {
+        this.id = null
+        this.iduser = iduser
+        this.role = role
+    }
+
+    toString()
+    {
+        return this.role
     }
 }
