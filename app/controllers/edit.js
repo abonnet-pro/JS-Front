@@ -252,6 +252,52 @@ class EditController extends BaseFormController
             }
         }
     }
+
+    async updateUserAdmin()
+    {
+        let login = this.validateRequiredField('#inputLoginUpdateUserAdmin', 'Login')
+        let name = this.validateRequiredField("#inputNameUpdateUserAdmin", 'Nom d\'utilisateur')
+        let selectedRoles = M.FormSelect.getInstance($("#selectRoles")).getSelectedValues()
+
+        if(selectedRoles.length === 0)
+        {
+            this.toast("Veuillez selectionner au moins un role")
+            return
+        }
+
+        adminController.user.login = login
+        adminController.user.displayname = name
+
+        if((login != null) && (name != null))
+        {
+            try
+            {
+                if (await this.model.updateProfil(adminController.user) === 200)
+                {
+                    await this.model.deleteUserRoles(adminController.user.id)
+                    for(let role of selectedRoles)
+                    {
+                        await this.model.insertRole(new Role(adminController.user.id, role))
+                    }
+
+                    this.toast("Le profil a bien été modifé")
+                    this.clearField('#inputLoginUpdateUserAdmin')
+                    this.clearField('#inputNameUpdateUserAdmin')
+                    this.getModal("#updateUserAdmin").close()
+                    await adminController.displaySearchUsers()
+                }
+                else
+                {
+                    this.displayServiceError()
+                }
+            }
+            catch(err)
+            {
+                console.log(err)
+                this.displayServiceError()
+            }
+        }
+    }
 }
 
 window.editController = new EditController()

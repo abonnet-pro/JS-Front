@@ -19,9 +19,55 @@
         </div>
     </form>
 
-    <h1 id="titleUsers">Tous les utilisateurs</h1>
+    <h2 id="titleUsers">Utilisateurs</h2>
     <div class="collection" id="collectionUsers">
+    </div>
+    <p id="labelNoUsersFound" class="center-align grey-text text-darken-3" style="display: none"><em>Aucun utilisateur trouvés</em></p>
+</div>
+
+<div id="updateUserAdmin" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <form>
+                <div class="row">
+                    <div class="input-field">
+                        <i class="material-icons prefix">email</i>
+                        <input id="inputLoginUpdateUserAdmin" type="text" class="validate">
+                        <label for="inputLoginUpdateUserAdmin">Login</label>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="inputNameUpdateUserAdmin" type="text" class="validate">
+                        <label for="inputNameUpdateUserAdmin">Nom d'utilisateur</label>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">accessibility</i>
+                        <select multiple id="selectRoles">
+                            <option value="USER" id="selectUser">Utilisateur</option>
+                            <option value="ADMIN" id="selectAdmin">Administrateur</option>
+                        </select>
+                    </div>
+                    <div>
+                        <a class="btn waves-effect waves-light teal" onclick="adminController.confirmSendEmail()"><i class="material-icons">email</i></a>
+                        <label>Envoyer un e-mail de reinitialisation de mot de passe</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="editController.updateUserAdmin()">Confirmer</button>
+        <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
     </div>
 </div>
 
 
+<div id="modalConfirmMailAdmin" class="modal">
+    <div class="modal-content">
+        <h4>E-mail de reinitialisation</h4>
+        <p>Etes vous sûr de vouloir envoyer un e-mail de reinitialisation de mot de passe à <span id="spanSpendEmail"></span> ?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-close waves-effect waves-green btn-flat" onclick="adminController.sendEmail()" id="btnSend">Oui</button>
+    </div>
+</div>

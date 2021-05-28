@@ -112,6 +112,11 @@ class Model
         return this.shareAPI.insert(share).then(res => res.status)
     }
 
+    insertRole(role)
+    {
+        return this.roleAPI.insert(role).then(res => res.status)
+    }
+
     delete(id)
     {
         return this.listAPI.delete(id).then(res => res.status)
@@ -125,6 +130,11 @@ class Model
     deleteShare(id)
     {
         return this.shareAPI.delete(id).then(res => res.status)
+    }
+
+    deleteUserRoles(id)
+    {
+        return this.roleAPI.delete(id).then(res => res.status)
     }
 
     update(list)
