@@ -49,21 +49,24 @@ class ShareController extends BaseController
     {
         let html = ''
         let shares = []
-        shares = await this.model.getShareSendByList(indexController.listId)
 
-        if(shares.length !== 0)
+        try
         {
-            $("#labelShare").style.display = "block"
-            $("#shareTable").style.display = "block"
-            $("#labelNoShare").style.display = "none"
-        }
+            shares = await this.model.getShareSendByList(indexController.listId)
 
-        for(let share of shares)
-        {
-            let useraccount = await this.model.getUser(share.iduserreceive)
-            let modificationState = share.modification ? 'check' : 'close'
+            if(shares.length !== 0)
+            {
+                $("#labelShare").style.display = "block"
+                $("#shareTable").style.display = "block"
+                $("#labelNoShare").style.display = "none"
+            }
 
-            html += `<tr>
+            for(let share of shares)
+            {
+                let useraccount = await this.model.getUser(share.iduserreceive)
+                let modificationState = share.modification ? 'check' : 'close'
+
+                html += `<tr>
                         <td>${useraccount.displayname}</td>
                         <td>${useraccount.login}</td>
                         <td><i class="small material-icons">${modificationState}</i></td>
@@ -73,9 +76,19 @@ class ShareController extends BaseController
                             </button>
                         </td>
                      </tr>`
+            }
+            $("#shareBodyTable").innerHTML = html
+            this.getModal("#modalListShare").open()
         }
-        $("#shareBodyTable").innerHTML = html
-        this.getModal("#modalListShare").open()
+        catch (e)
+        {
+            if(e === 401)
+            {
+                window.location.replace("login.html")
+            }
+            console.log(e)
+            this.displayServiceError()
+        }
     }
 
     async displayConfirmDelete(id)

@@ -66,10 +66,14 @@ class ItemController extends BaseController
         {
             const item = await this.model.getItem(id)
             item.checked = !item.checked
-            this.model.updateItem(item)
+            await this.model.updateItem(item)
         }
         catch (e)
         {
+            if(e === 401)
+            {
+                window.location.replace("login.html")
+            }
             console.log(e)
             this.displayServiceError()
         }
@@ -93,6 +97,9 @@ class ItemController extends BaseController
                     case 500:
                         this.displayNotEmptyListError()
                         break
+                    case 401:
+                        window.location.replace("login.html")
+                        break
                     default:
                         this.displayServiceError()
                 }
@@ -101,6 +108,10 @@ class ItemController extends BaseController
         }
         catch(e)
         {
+            if(e === 401)
+            {
+                window.location.replace("login.html")
+            }
             console.log(e)
             this.displayServiceError()
         }
@@ -130,6 +141,10 @@ class ItemController extends BaseController
         }
         catch (err)
         {
+            if(err === 401)
+            {
+                window.location.replace("login.html")
+            }
             console.log(err)
             this.displayServiceError()
         }

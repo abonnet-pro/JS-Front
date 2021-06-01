@@ -82,16 +82,20 @@ class EditController extends BaseFormController
 
             try
             {
-                if(await this.model.insert(new List(shop, dateList)) === 200)
+                switch(await this.model.insert(new List(shop, dateList)))
                 {
-                    this.toast("La liste a bien été inséré")
-                    this.clearField('#inputShopList')
-                    this.clearField('#inputDateList')
-                    await indexController.displayAllList()
-                }
-                else
-                {
-                    this.displayServiceError()
+                    case 200:
+                        this.toast("La liste a bien été inséré")
+                        this.clearField('#inputShopList')
+                        this.clearField('#inputDateList')
+                        await indexController.displayAllList()
+                        break
+                    case 401:
+                            window.location.replace("login.html")
+                            break
+                    default:
+                        this.displayServiceError()
+                        break
                 }
             }
             catch(err)
@@ -113,25 +117,34 @@ class EditController extends BaseFormController
             return
         }
 
+
         if((label != null) && (quantity != null))
         {
             try
             {
-                if(await this.model.insertItem(new Item(indexController.listId, label, quantity)) === 200)
+                switch(await this.model.insertItem(new Item(indexController.listId, label, quantity)))
                 {
-                    this.toast("L'ingrédient a bien été inséré")
-                    this.clearField('#inputLabelItem')
-                    this.clearField('#inputQuantityItem')
-                    await itemController.displayAllItem()
-                    this.getModal("#addItem").close()
-                }
-                else
-                {
-                    this.displayServiceError()
+                    case 200:
+                        this.toast("L'ingrédient a bien été inséré")
+                        this.clearField('#inputLabelItem')
+                        this.clearField('#inputQuantityItem')
+                        await itemController.displayAllItem()
+                        this.getModal("#addItem").close()
+                        break
+                    case 401:
+                            window.location.replace("login.html")
+                        break
+                    default:
+                        this.displayServiceError()
+                        break
                 }
             }
             catch (e)
             {
+                if(e === 401)
+                {
+                    window.location.replace("login.html")
+                }
                 console.log(e)
                 this.displayServiceError()
             }
@@ -149,22 +162,30 @@ class EditController extends BaseFormController
             itemController.selectedItem.quantity = quantity
             try
             {
-                if (await this.model.updateItem(itemController.selectedItem) === 200)
+                switch(await this.model.updateItem(itemController.selectedItem))
                 {
-                    this.toast("L'ingrédient a bien été modifé")
-                    this.clearField('#inputLabelUpdateItem')
-                    this.clearField('#inputQuantityUpdateItem')
-                    itemController.selectedItem = null
-                    this.getModal("#updateItem").close()
-                    await itemController.displayAllItem()
-                }
-                else
-                {
-                    this.displayServiceError()
+                    case 200:
+                        this.toast("L'ingrédient a bien été modifé")
+                        this.clearField('#inputLabelUpdateItem')
+                        this.clearField('#inputQuantityUpdateItem')
+                        itemController.selectedItem = null
+                        this.getModal("#updateItem").close()
+                        await itemController.displayAllItem()
+                        break
+                    case 401:
+                        window.location.replace("login.html")
+                        break
+                    default:
+                        this.displayServiceError()
+                        break
                 }
             }
             catch(err)
             {
+                if(err === 401)
+                {
+                    window.location.replace("login.html")
+                }
                 console.log(err)
                 this.displayServiceError()
             }
@@ -200,6 +221,10 @@ class EditController extends BaseFormController
             }
             catch (e)
             {
+                if(e === 401)
+                {
+                    window.location.replace("login.html")
+                }
                 console.log(e)
                 this.displayServiceError()
             }
@@ -232,21 +257,29 @@ class EditController extends BaseFormController
         {
             try
             {
-                if (await this.model.updateProfil(profilController.user) === 200)
+                switch (await this.model.updateProfil(profilController.user))
                 {
-                    this.toast("Votre profil a bien été modifé")
-                    this.clearField('#inputLoginUpdateUser')
-                    this.clearField('#inputNameUpdateUser')
-                    this.getModal("#updateUser").close()
-                    await profilController.displayProfilInformation()
-                }
-                else
-                {
-                    this.displayServiceError()
+                    case 200:
+                        this.toast("Votre profil a bien été modifé")
+                        this.clearField('#inputLoginUpdateUser')
+                        this.clearField('#inputNameUpdateUser')
+                        this.getModal("#updateUser").close()
+                        await profilController.displayProfilInformation()
+                        break
+                    case 401:
+                            window.location.replace("login.html")
+                        break
+                    default:
+                        this.displayServiceError()
+                        break
                 }
             }
             catch(err)
             {
+                if(err === 401)
+                {
+                    window.location.replace("login.html")
+                }
                 console.log(err)
                 this.displayServiceError()
             }
@@ -267,6 +300,7 @@ class EditController extends BaseFormController
 
         adminController.user.login = login
         adminController.user.displayname = name
+        adminController.user.active = $("#checkActiveAccount").checked
 
         if((login != null) && (name != null))
         {

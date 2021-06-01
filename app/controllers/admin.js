@@ -96,6 +96,7 @@ class AdminController extends BaseController
 
             $("#inputLoginUpdateUserAdmin").value = user.login
             $("#inputNameUpdateUserAdmin").value = user.displayname
+            $("#checkActiveAccount").checked = user.active
             this.getModal("#updateUserAdmin").open()
             $("#inputNameUpdateUserAdmin").focus()
             $("#inputLoginUpdateUserAdmin").focus()

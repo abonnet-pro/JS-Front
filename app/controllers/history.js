@@ -71,6 +71,10 @@ class HistoryController extends BaseController {
                 this.displayHistoryList()
             })
         } catch (err) {
+            if(err === 401)
+            {
+                window.location.replace("login.html")
+            }
             console.log(err)
             this.displayServiceError()
         }

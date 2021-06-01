@@ -199,16 +199,8 @@ class Model
 
     async getItem(id)
     {
-        try
-        {
-            const item = Object.assign(new Item(), await this.itemAPI.get(id))
-            return item
-        }
-        catch (e)
-        {
-            if (e === 404) return null
-            return undefined
-        }
+        const item = Object.assign(new Item(), await this.itemAPI.get(id))
+        return item
     }
 
     async getUser(id)

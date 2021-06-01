@@ -120,6 +120,10 @@ class IndexController extends BaseController
         }
         catch (err)
         {
+            if(err === 401)
+            {
+                window.location.replace("login.html")
+            }
             console.log(err)
             this.displayServiceError()
         }
@@ -148,6 +152,10 @@ class IndexController extends BaseController
         }
         catch (err)
         {
+            if(err === 401)
+            {
+                window.location.replace("login.html")
+            }
             console.log(err)
             this.displayServiceError()
         }
@@ -180,6 +188,10 @@ class IndexController extends BaseController
             })
         }
         catch (e) {
+            if(e === 401)
+            {
+                window.location.replace("login.html")
+            }
             console.log(e)
             this.displayServiceError()
         }
@@ -203,12 +215,19 @@ class IndexController extends BaseController
                     case 500:
                         this.displayNotEmptyListError()
                         break
+                    case 401:
+                        window.location.replace("login.html")
+                        break
                     default:
                         this.displayServiceError()
                 }
                 this.displayAllList()
             })
         } catch (err) {
+            if(err === 401)
+            {
+                window.location.replace("login.html")
+            }
             console.log(err)
             this.displayServiceError()
         }
