@@ -21,3 +21,30 @@ table{
 #switchDiv{
     margin-top: 10px;
 }
+
+#sendNotification{
+    margin-top: 10px;
+}
+
+#spanNumberNotifications{
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    background: #FF4754;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #121212;
+    border-radius: 50%;
+}
+
+#buttonNumberNotifications{
+    color: white;
+    background: #5899ff;
+    border-radius: 4px;
+    position:fixed;
+    right:20px;
+    bottom:20px;
+}

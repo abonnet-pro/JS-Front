@@ -83,3 +83,22 @@ class Role
         return this.role
     }
 }
+
+class Notification
+{
+    constructor(iduserreceive, title, message, date, read)
+    {
+        this.id = null
+        this.idusersend = null
+        this.iduserreceive = iduserreceive
+        this.title = title
+        this.message = message
+        this.date = date
+        this.read = read
+    }
+
+    toString()
+    {
+        return this.message
+    }
+}

@@ -51,6 +51,10 @@
                         <a class="btn waves-effect waves-light teal" onclick="adminController.confirmSendEmail()"><i class="material-icons">email</i></a>
                         <label>Envoyer un e-mail de reinitialisation de mot de passe</label>
                     </div>
+                    <div id="sendNotification">
+                        <a class="btn waves-effect waves-light teal" onclick="adminController.showNotificationEdit()"><i class="material-icons">comment</i></a>
+                        <label>Envoyer une notification</label>
+                    </div>
                     <div class="switch" id="switchDiv">
                         <label>
                             Inactif
@@ -77,5 +81,30 @@
     </div>
     <div class="modal-footer">
         <button class="modal-close waves-effect waves-green btn-flat" onclick="adminController.sendEmail()" id="btnSend">Oui</button>
+    </div>
+</div>
+
+<div id="modalSendNotificationAdmin" class="modal">
+    <div class="modal-content">
+        <h4>Notification</h4>
+        <div class="divider"></div>
+        <div class="section">
+            <label for="labelLoginNotification">Envoyer à :</label>
+            <p id="labelLoginNotification"></p>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+            <label for="inputTitleNotification">Titre : </label>
+            <input id="inputTitleNotification" type="text" class="validate">
+        </div>
+
+        <div class="section">
+            <label for="inputMessageNotification">Message : </label>
+            <textarea id="inputMessageNotification" class="materialize-textarea"></textarea>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="modal-close waves-effect waves-green btn-flat blue darken-4 white-text" onclick="editController.sendNotification()">Envoyer</button>
     </div>
 </div>

@@ -332,6 +332,43 @@ class EditController extends BaseFormController
             }
         }
     }
+
+    async sendNotification()
+    {
+        let title = this.validateRequiredField("#inputTitleNotification", "titre")
+        let message = this.validateRequiredField("#inputMessageNotification", "message")
+        let userReceive = await this.model.getUserByLogin(adminController.user.login)
+        let dateNotification = new Date()
+
+        console.log(new Notification(userReceive.id, title, message, dateNotification))
+
+        if(title !== null && message !== null)
+        {
+            try
+            {
+                switch(await this.model.insertNotification(new Notification(userReceive.id, title, message, dateNotification, false)))
+                {
+                    case 200:
+                        this.toast("La notification a bien été envoyée")
+                        this.clearField('#inputTitleNotification')
+                        this.clearField('#inputMessageNotification')
+                        this.getModal("#modalSendNotificationAdmin").close()
+                        break
+                    case 401:
+                        window.location.replace("login.html")
+                        break
+                    default:
+                        this.displayServiceError()
+                        break
+                }
+            }
+            catch(e)
+            {
+                console.log(e)
+                this.displayServiceError()
+            }
+        }
+    }
 }
 
 window.editController = new EditController()

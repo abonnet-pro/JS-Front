@@ -127,6 +127,12 @@ class AdminController extends BaseController
             this.displayServiceError()
         }
     }
+
+    showNotificationEdit()
+    {
+        $("#labelLoginNotification").innerText = this.user.login
+        this.getModal("#modalSendNotificationAdmin").open()
+    }
 }
 
 

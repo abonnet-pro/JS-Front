@@ -7,6 +7,7 @@ class Model
         this.userAccountAPI = new UserAccountAPI()
         this.shareAPI = new ShareAPI()
         this.roleAPI = new RoleAPI()
+        this.notificationAPI = new Notificationapi()
     }
 
     async getAllList()
@@ -92,6 +93,16 @@ class Model
         return shares
     }
 
+    async getNotificationsByLogin(login)
+    {
+        let notifications = []
+        for (let notification of await this.notificationAPI.getNotificationsByLogin(login))
+        {
+            notifications.push(Object.assign(new Notification(), notification))
+        }
+        return notifications
+    }
+
     insert(list)
     {
         return this.listAPI.insert(list).then(res => res.status)
@@ -115,6 +126,11 @@ class Model
     insertRole(role)
     {
         return this.roleAPI.insert(role).then(res => res.status)
+    }
+
+    insertNotification(notification)
+    {
+        return this.notificationAPI.insert(notification).then(res => res.status)
     }
 
     delete(id)
@@ -170,6 +186,11 @@ class Model
     resetPassword(login)
     {
         return this.userAccountAPI.resetPassword(login).then(res => res.status)
+    }
+
+    reloadNotification(notification)
+    {
+        return this.notificationAPI.reloadNotification(notification).then(res => res.status)
     }
 
     async checkShareExist(idreceive, idlist)

@@ -65,13 +65,16 @@ class ShareController extends BaseController
             {
                 let useraccount = await this.model.getUser(share.iduserreceive)
                 let modificationState = share.modification ? 'check' : 'close'
+                let disabled = (indexController.login === useraccount.login || share.idusersend === (await this.model.getUserByLogin(indexController.login)).id) ? "" : "disabled"
+
+                console.log(disabled)
 
                 html += `<tr>
                         <td>${useraccount.displayname}</td>
                         <td>${useraccount.login}</td>
                         <td><i class="small material-icons">${modificationState}</i></td>
                         <td>
-                            <button type="button" class="red darken-4 btn" onclick="shareController.displayConfirmDelete(${share.id})">
+                            <button type="button" class="red darken-4 btn ${disabled}" onclick="shareController.displayConfirmDelete(${share.id})">
                             <i class="small material-icons">delete</i>
                             </button>
                         </td>

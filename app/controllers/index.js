@@ -15,6 +15,7 @@ class IndexController extends BaseController
         this.displayAllList()
         this.displayAllShareList()
         this.checkRoles()
+        this.checkNotification()
     }
 
     async displayAllList()
@@ -197,16 +198,34 @@ class IndexController extends BaseController
         }
     }
 
+    async deleteShares(shares)
+    {
+        try
+        {
+            for(let share of shares)
+            {
+                await this.model.deleteShare(share.id)
+            }
+        }
+        catch(e)
+        {
+            console.log(e)
+            this.displayServiceError()
+        }
+    }
+
     async displayConfirmDelete(id)
     {
         try
         {
             const list = await this.model.getList(id)
+            const shares = await this.model.getShareSendByList(list.id)
             super.displayConfirmDelete(list, async () => {
                 switch (await this.model.delete(id))
                 {
                     case 200:
                         this.deletedList = list
+                        await this.deleteShares(shares)
                         this.displayDeletedMessage("indexController.undoDelete()");
                         break
                     case 404:
@@ -222,6 +241,7 @@ class IndexController extends BaseController
                         this.displayServiceError()
                 }
                 this.displayAllList()
+                this.displayAllShareList()
             })
         } catch (err) {
             if(err === 401)
@@ -322,6 +342,52 @@ class IndexController extends BaseController
             {
                 $("#nav-admin").style.display = "block"
             }
+        }
+    }
+
+    async checkNotification()
+    {
+        try
+        {
+            const notifications = await this.model.getNotificationsByLogin(this.login)
+            if(notifications.length > 0)
+            {
+                $("#buttonNumberNotifications").style.display = "block"
+                $("#spanNumberNotifications").innerText = notifications.length
+            }
+            else
+            {
+                $("#buttonNumberNotifications").style.display = "none"
+            }
+
+        }
+        catch(e)
+        {
+            if(e === 401)
+            {
+                window.location.replace("login.html")
+            }
+            console.log(e)
+        }
+    }
+
+    async showNotifications()
+    {
+        try
+        {
+            const notifications = await this.model.getNotificationsByLogin(this.login)
+            for(let notification of notifications)
+            {
+                await this.model.reloadNotification(notification)
+            }
+        }
+        catch(e)
+        {
+            if(e === 401)
+            {
+                window.location.replace("login.html")
+            }
+            console.log(e)
         }
     }
 }
