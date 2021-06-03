@@ -113,7 +113,7 @@
     </div>
 </div>
 
-<a class="btn-large" id="buttonNumberNotifications" style="display: none" onclick="indexController.showNotifications()"><i class="material-icons">comment</i><span id="spanNumberNotifications"></span></a>
+<a class="btn-large pulse" id="buttonNumberNotifications" style="display: none" onclick="indexController.showNotifications()"><i class="material-icons">comment</i><span id="spanNumberNotifications"></span></a>
 
 <div id="formShareList" class="modal">
     <div class="modal-content">
@@ -143,5 +143,21 @@
     <div class="modal-footer ">
         <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="shareController.shareList()">Partager</button>
         <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
+    </div>
+</div>
+
+<div class="modal card" id="modalNotification">
+    <div class="card-content">
+        <span class="card-title" id="cardTitle"></span>
+        <p id="cardMessage"></p>
+        <p class="grey-text" id="cardDate"><small>reçue le : </small></p>
+    </div>
+    <div class="card-action" id="cardActions">
+        <label>
+            <input type="checkbox" class="filled-in" onchange="indexController.removeNotification()" id="checkReadNotification"/>
+            <span>Ne plus afficher</span>
+        </label>
+        <a onclick="indexController.nextNotification()" class="btn-flat right" id="btnNotificationNext"><i class="material-icons">chevron_right</i></a>
+        <a onclick="indexController.previousNotification()" class="btn-flat disabled right" id="btnNotificationPrevious"><i class="material-icons">chevron_left</i></a>
     </div>
 </div>

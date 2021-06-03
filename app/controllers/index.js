@@ -375,11 +375,26 @@ class IndexController extends BaseController
     {
         try
         {
-            const notifications = await this.model.getNotificationsByLogin(this.login)
-            for(let notification of notifications)
+            $("#btnNotificationPrevious").className = "btn-flat right disabled"
+            $("#btnNotificationNext").className = "btn-flat right"
+            this.notifications = await this.model.getNotificationsByLogin(this.login)
+            this.currentNotification = 0
+
+            if(this.notifications.length === 0)
             {
-                await this.model.reloadNotification(notification)
+                this.getModal("#modalNotification").close()
+                return
             }
+
+            if(this.currentNotification === this.notifications.length - 1)
+            {
+                $("#btnNotificationNext").className = "btn-flat right disabled"
+            }
+
+            $("#cardTitle").innerText = this.notifications[this.currentNotification].title
+            $("#cardMessage").innerText = this.notifications[this.currentNotification].message
+            $("#cardDate").innerText += (this.notifications[this.currentNotification].date).toLocaleDateString()
+            this.getModal("#modalNotification").open()
         }
         catch(e)
         {
@@ -388,6 +403,68 @@ class IndexController extends BaseController
                 window.location.replace("login.html")
             }
             console.log(e)
+        }
+    }
+
+    nextNotification()
+    {
+        this.currentNotification += 1
+        $("#btnNotificationPrevious").className = "btn-flat right"
+        if(this.currentNotification === this.notifications.length - 1)
+        {
+            $("#btnNotificationNext").className = "btn-flat right disabled"
+        }
+        $("#cardTitle").innerText = this.notifications[this.currentNotification].title
+        $("#cardMessage").innerText = this.notifications[this.currentNotification].message
+        $("#cardDate").innerText += (this.notifications[this.currentNotification].date).toLocaleDateString()
+    }
+
+    previousNotification()
+    {
+        this.currentNotification -= 1
+        $("#btnNotificationNext").className = "btn-flat right"
+        if(this.currentNotification === 0)
+        {
+            $("#btnNotificationPrevious").className = "btn-flat right disabled"
+        }
+        $("#cardTitle").innerText = this.notifications[this.currentNotification].title
+        $("#cardMessage").innerText = this.notifications[this.currentNotification].message
+        $("#cardDate").innerText += (this.notifications[this.currentNotification].date).toLocaleDateString()
+    }
+
+    async removeNotification()
+    {
+        try
+        {
+            this.notifications[this.currentNotification].read = true
+            switch (await this.model.updateNotification(this.notifications[this.currentNotification]))
+            {
+                case 200:
+                    this.showNotifications()
+                    this.checkNotification()
+                    break
+                case 404:
+                    this.displayNotFoundError();
+                    break
+                case 500:
+                    this.displayNotEmptyListError()
+                    break
+                case 401:
+                    window.location.replace("login.html")
+                    break
+                default:
+                    this.displayServiceError()
+            }
+            $("#checkReadNotification").checked = false
+        }
+        catch(e)
+        {
+            if(e === 401)
+            {
+                window.location.replace("login.html")
+            }
+            console.log(e)
+            this.displayServiceError()
         }
     }
 }

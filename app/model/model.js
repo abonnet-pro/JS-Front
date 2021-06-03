@@ -98,6 +98,7 @@ class Model
         let notifications = []
         for (let notification of await this.notificationAPI.getNotificationsByLogin(login))
         {
+            notification.date = new Date(notification.date)
             notifications.push(Object.assign(new Notification(), notification))
         }
         return notifications
@@ -171,6 +172,11 @@ class Model
     updateProfil(user)
     {
         return this.userAccountAPI.updateProfil(user).then(res => res.status)
+    }
+
+    updateNotification(notification)
+    {
+        return this.notificationAPI.updateNotification(notification).then(res => res.status)
     }
 
     refreshToken()
