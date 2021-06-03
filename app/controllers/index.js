@@ -393,7 +393,7 @@ class IndexController extends BaseController
 
             $("#cardTitle").innerText = this.notifications[this.currentNotification].title
             $("#cardMessage").innerText = this.notifications[this.currentNotification].message
-            $("#cardDate").innerText += (this.notifications[this.currentNotification].date).toLocaleDateString()
+            $("#cardDate").innerText = `reçue le : ${(this.notifications[this.currentNotification].date).toLocaleDateString()}`
             this.getModal("#modalNotification").open()
         }
         catch(e)
@@ -416,7 +416,7 @@ class IndexController extends BaseController
         }
         $("#cardTitle").innerText = this.notifications[this.currentNotification].title
         $("#cardMessage").innerText = this.notifications[this.currentNotification].message
-        $("#cardDate").innerText += (this.notifications[this.currentNotification].date).toLocaleDateString()
+        $("#cardDate").innerText = `reçue le : ${(this.notifications[this.currentNotification].date).toLocaleDateString()}`
     }
 
     previousNotification()
@@ -429,7 +429,7 @@ class IndexController extends BaseController
         }
         $("#cardTitle").innerText = this.notifications[this.currentNotification].title
         $("#cardMessage").innerText = this.notifications[this.currentNotification].message
-        $("#cardDate").innerText += (this.notifications[this.currentNotification].date).toLocaleDateString()
+        $("#cardDate").innerText = `reçue le : ${(this.notifications[this.currentNotification].date).toLocaleDateString()}`
     }
 
     async removeNotification()
