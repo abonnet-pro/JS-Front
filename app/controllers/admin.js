@@ -21,7 +21,7 @@ class AdminController extends BaseController
 
             for(let user of users)
             {
-                content += `<a onclick="adminController.edit(${user.id})" class="collection-item">${user.displayname} (${user.login})</a>`
+                content += `<a onclick="adminController.edit(${user.id})" class="collection-item black-text" style="background-color: #e9c89e;">${user.displayname} (${user.login})</a>`
             }
 
             $("#collectionUsers").innerHTML = content
@@ -54,7 +54,7 @@ class AdminController extends BaseController
                     $("#collectionUsers").style.display = "block"
                     for(let user of users)
                     {
-                        content += `<a onclick="adminController.edit(${user.id})" class="collection-item">${user.displayname} (${user.login})</a>`
+                        content += `<a onclick="adminController.edit(${user.id})" class="collection-item black-text" style="background-color: #e9c89e;">${user.displayname} (${user.login})</a>`
                     }
                     $("#collectionUsers").innerHTML = content
                 }

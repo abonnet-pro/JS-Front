@@ -1,11 +1,54 @@
 body {
     margin: 10px;
+    background-color: #e9c89e;
+    height:100%;
+}
+
+html {
+    height:100%;
+}
+
+#content{
+    height:100%;
+}
+
+.nav-wrapper{
+    background-color: #17769f;
+}
+
+.brand-logo{
+    margin-left: 10px;
+}
+
+#contentLists{
+    height:100%;
+}
+
+#titleList{
+    border: #121212;
+}
+
+#titleNoShareList{
+    font: italic small-caps bold 20px/2 cursive;
+}
+
+#titleNoList{
+    font: italic small-caps bold 20px/2 cursive;
 }
 
 #tableAllList{
     width: 500px;
     margin-left: auto;
     margin-right: auto;
+}
+
+td{
+    background-color: #e9c89e;
+}
+
+.btn
+{
+    border: 1px solid #121212;
 }
 
 #tableAllListShare{
@@ -47,4 +90,59 @@ table{
     position:fixed;
     right:20px;
     bottom:20px;
+}
+
+.modal{
+    border: 2px solid #121212;
+    border-radius: 10px;
+    background-color: #e5ddcd;
+}
+
+p{
+    font: small-caps bold 16px/2 cursive;
+}
+
+.font-custom{
+    font: small-caps bold 16px/2 cursive;
+}
+
+#divider{
+    position:absolute;
+    left:50%;
+    top:15%;
+    height: 90%;
+    border-left:2px solid #000000;
+}
+
+a{
+    cursor: pointer;
+}
+
+.post-it{
+    padding: 2%;
+    background-color: #ffffa5;
+    box-shadow: 2px 4px 6px #444;
+    -moz-box-shadow: 2px 4px 6px #444;
+    -webkit-box-shadow: 2px 4px 6px #444;
+    transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
+    -webkit-transform: rotate(2deg);
+    -o-transform: rotate(2deg);
+    -ms-transform: rotate(2deg);
+    border-bottom-right-radius: 60px 10px;
+    margin: 20px;
+}
+
+.history{
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    background: #FF4754;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #121212;
+    border-radius: 50%;
 }

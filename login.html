@@ -40,8 +40,7 @@
 
     <div id="addUser" class="modal">
         <div class="modal-content">
-            <div class="row">
-                <h1 class="center">Inscription</h1>
+                <h1 class="red-text text-lighten-2">Inscription</h1>
                 <form>
                     <div class="row">
                         <div class="input-field">
@@ -61,18 +60,15 @@
                         </div>
                     </div>
                 </form>
-            </div>
-        </div>
-        <div class="modal-footer ">
-            <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="loginController.saveUser()">Confirmer</button>
-            <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
+                <a class="font-custom btn green lighten-1" onclick="loginController.saveUser()">Confirmer</a>
+                <a class="font-custom btn red lighten-1 modal-close">Annuler</a>
         </div>
     </div>
 
     <div id="resetPassword" class="modal">
         <div class="modal-content">
             <div class="row">
-                <h2>Mot de passe oublié ?</h2>
+                <h2 class="red-text text-lighten-2">Mot de passe oublié ?</h2>
                 <p>Pour réinitialiser votre mot de passe, saisissez l'adresse e-mail que vous utilisez pour vous connecter à votre compte. Nous vous enverrons un lien pour modifier votre mot de passe <br>(Attention ce lien ne sera valide que pendant 30 minutes).</p>
                 <form>
                     <div class="row">
@@ -82,11 +78,9 @@
                         </div>
                     </div>
                 </form>
+                <a class="font-custom btn green lighten-1" onclick="loginController.resetPassword()">Envoyer</a>
+                <a class="font-custom btn red lighten-1 modal-close">Annuler</a>
             </div>
-        </div>
-        <div class="modal-footer ">
-            <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="loginController.resetPassword()">Envoyer</button>
-            <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
         </div>
     </div>
 

@@ -23,6 +23,16 @@ class ItemController extends BaseController
             const items = await this.model.getAllItemByList(list.id)
             $("#itemTitle").innerText = `Liste du ${list.date.toLocaleDateString()}`
 
+            if(items.length > 0)
+            {
+                $("#titleNoItem").style.display = "none"
+            }
+            else
+            {
+                $("#titleNoItem").style.display = "block"
+            }
+
+
             for(let item of items)
             {
                 let checked = item.checked ? "checked" : ""
@@ -34,15 +44,15 @@ class ItemController extends BaseController
                                     <span></span>
                                     </label>
                                 </td>
-                                <td>${item.label}</td>
-                                <td>${item.quantity}</td>
+                                <td class="font-custom">${item.label}</td>
+                                <td class="font-custom">${item.quantity}</td>
                                 <td>
-                                    <button type="button" class="red darken-4 btn ${disabled}" onclick="itemController.displayConfirmDelete(${item.id})">
+                                    <button type="button" class="red lighten-2 btn ${disabled}" onclick="itemController.displayConfirmDelete(${item.id})">
                                     <i class="small material-icons">delete</i>
                                     </button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn ${disabled}" onclick="itemController.edit(${item.id})">
+                                    <button type="button" class="btn ${disabled} orange lighten-2" onclick="itemController.edit(${item.id})">
                                     <i class="small material-icons">edit</i>
                                     </button>
                                 </td>

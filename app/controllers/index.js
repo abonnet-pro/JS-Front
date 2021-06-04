@@ -25,22 +25,34 @@ class IndexController extends BaseController
         this.formUpdateList.style.display = "none"
         this.btnAddList.style.display = "block"
 
-        try {
+        try
+        {
             window.token = await this.model.refreshToken()
             sessionStorage.setItem("token", window.token)
             const allList = await this.model.getAllList()
+
+            if(allList.length > 0)
+            {
+                $("#divMyList").style.display = "block"
+                $("#titleNoList").style.display = "none"
+            }
+            else
+            {
+                $("#divMyList").style.display = "none"
+                $("#titleNoList").style.display = "block"
+            }
 
             for (const list of allList)
             {
                 const date = list.date.toLocaleDateString()
                 content += `<tr>
-                                <td><a class="btn transparent black-text" onclick="indexController.navigateItemList('${list.id}')">${list.shop}</a></td>
+                                <td><a class="btn transparent white-text light-blue darken-2" onclick="indexController.navigateItemList('${list.id}')">${list.shop}</a></td>
                                 <td>${date}</td>
                                 <td class="icon">
-                                    <a class="btn tooltipped" data-position="bottom" data-tooltip="Supprimer" onclick="indexController.displayConfirmDelete(${list.id})"><i class="material-icons">delete</i></a>
-                                    <button class="btn" onclick="indexController.edit(${list.id})"><i class="material-icons">edit</i></button>
-                                    <button class="btn" onclick="indexController.displayConfirmArchive(${list.id})"><i class="material-icons">archive</i></button>
-                                    <button class="btn" onclick="indexController.displaySearchShare(${list.id})"><i class="material-icons">share</i></button>
+                                    <a class="btn tooltipped red lighten-2" data-position="bottom" data-tooltip="Supprimer" onclick="indexController.displayConfirmDelete(${list.id})"><i class="material-icons">delete</i></a>
+                                    <button class="btn orange lighten-2" onclick="indexController.edit(${list.id})"><i class="material-icons">edit</i></button>
+                                    <button class="btn blue-grey lighten-2" onclick="indexController.displayConfirmArchive(${list.id})"><i class="material-icons">archive</i></button>
+                                    <button class="btn light-blue lighten-2" onclick="indexController.displaySearchShare(${list.id})"><i class="material-icons">share</i></button>
                                 </td>
                             </tr>`
             }
@@ -64,7 +76,20 @@ class IndexController extends BaseController
 
         try
         {
-            for(const share of await this.model.getShareReceive())
+            const shareList = await this.model.getShareReceive()
+
+            if(shareList.length > 0)
+            {
+                $("#divListShare").style.display = "block"
+                $("#titleNoShareList").style.display = "none"
+            }
+            else
+            {
+                $("#divListShare").style.display = "none"
+                $("#titleNoShareList").style.display = "block"
+            }
+
+            for(const share of shareList)
             {
                 const list = await this.model.getList(share.idlist)
                 const user = await this.model.getUser(list.iduser)
@@ -72,12 +97,12 @@ class IndexController extends BaseController
                 const disabled = share.modification ? "" : "disabled"
 
                 content += `<tr>
-                                <td><a class="btn transparent black-text" onclick="indexController.navigateItemList(${list.id}, ${share.modification}, '${user.displayname}')">${list.shop}</a></td>
+                                <td><a class="btn transparent white-text light-blue darken-2" onclick="indexController.navigateItemList(${list.id}, ${share.modification}, '${user.displayname}')">${list.shop}</a></td>
                                 <td>${date}</td>
                                 <td class="icon">
-                                    <a class="btn tooltipped ${disabled}" data-position="bottom" data-tooltip="Supprimer" onclick="indexController.displayConfirmDelete(${list.id})"><i class="material-icons">delete</i></a>
-                                    <button class="btn ${disabled}" onclick="indexController.editShare(${list.id})"><i class="material-icons">edit</i></button>
-                                    <button class="btn ${disabled}" onclick="indexController.displayConfirmArchive(${list.id})"><i class="material-icons">archive</i></button>
+                                    <a class="btn tooltipped ${disabled} red lighten-2" data-position="bottom" data-tooltip="Supprimer" onclick="indexController.displayConfirmDelete(${list.id})"><i class="material-icons">delete</i></a>
+                                    <button class="btn ${disabled} orange lighten-2" onclick="indexController.editShare(${list.id})"><i class="material-icons">edit</i></button>
+                                    <button class="btn ${disabled} blue-grey lighten-2" onclick="indexController.displayConfirmArchive(${list.id})"><i class="material-icons">archive</i></button>
                                 </td>
                             </tr>`
             }

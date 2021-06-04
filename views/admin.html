@@ -14,12 +14,13 @@
                 <label for="inputLoginSearch">Login de l'utilisateur</label>
             </div>
             <div class="input-field col s1">
-                <a class="btn" onclick="adminController.displaySearchUsers()"><i class="material-icons">search</i></a>
+                <a class="btn blue" onclick="adminController.displaySearchUsers()"><i class="material-icons">search</i></a>
             </div>
         </div>
     </form>
 
     <h2 id="titleUsers">Utilisateurs</h2>
+    <br>
     <div class="collection" id="collectionUsers">
     </div>
     <p id="labelNoUsersFound" class="center-align grey-text text-darken-3" style="display: none"><em>Aucun utilisateur trouvés</em></p>
@@ -27,7 +28,9 @@
 
 <div id="updateUserAdmin" class="modal">
     <div class="modal-content">
-        <div class="row">
+
+            <h4 class="red-text text-lighten-2">Utilisateur</h4>
+            <br>
             <form>
                 <div class="row">
                     <div class="input-field">
@@ -48,11 +51,11 @@
                         </select>
                     </div>
                     <div>
-                        <a class="btn waves-effect waves-light teal" onclick="adminController.confirmSendEmail()"><i class="material-icons">email</i></a>
+                        <a class="btn waves-effect waves-light blue darken-1" onclick="adminController.confirmSendEmail()"><i class="material-icons">email</i></a>
                         <label>Envoyer un e-mail de reinitialisation de mot de passe</label>
                     </div>
                     <div id="sendNotification">
-                        <a class="btn waves-effect waves-light teal" onclick="adminController.showNotificationEdit()"><i class="material-icons">comment</i></a>
+                        <a class="btn waves-effect waves-light blue darken-1" onclick="adminController.showNotificationEdit()"><i class="material-icons">comment</i></a>
                         <label>Envoyer une notification</label>
                     </div>
                     <div class="switch" id="switchDiv">
@@ -65,34 +68,31 @@
                     </div>
                 </div>
             </form>
-        </div>
-    </div>
-    <div class="modal-footer ">
-        <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="editController.updateUserAdmin()">Confirmer</button>
-        <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
+            <a class="font-custom btn green lighten-1" onclick="editController.updateUserAdmin()">Confirmer</a>
+            <a class="font-custom btn red lighten-1 modal-close">Annuler</a>
     </div>
 </div>
 
 
 <div id="modalConfirmMailAdmin" class="modal">
     <div class="modal-content">
-        <h4>E-mail de reinitialisation</h4>
+        <h4 class="red-text text-lighten-2">Reinitialisation</h4>
         <p>Etes vous sûr de vouloir envoyer un e-mail de reinitialisation de mot de passe à <span id="spanSpendEmail"></span> ?</p>
-    </div>
-    <div class="modal-footer">
-        <button class="modal-close waves-effect waves-green btn-flat" onclick="adminController.sendEmail()" id="btnSend">Oui</button>
+        <div class="divider black"></div>
+        <br>
+        <a class="font-custom btn green lighten-1" onclick="editController.sendEmail()" id="btnSend">Confirmer</a>
+        <a class="font-custom btn red lighten-1 modal-close">Annuler</a>
     </div>
 </div>
 
 <div id="modalSendNotificationAdmin" class="modal">
     <div class="modal-content">
-        <h4>Notification</h4>
+        <h4 class="red-text text-lighten-2">Notification</h4>
         <div class="divider"></div>
         <div class="section">
             <label for="labelLoginNotification">Envoyer à :</label>
             <p id="labelLoginNotification"></p>
         </div>
-        <div class="divider"></div>
         <div class="section">
             <label for="inputTitleNotification">Titre : </label>
             <input id="inputTitleNotification" type="text" class="validate">
@@ -102,9 +102,7 @@
             <label for="inputMessageNotification">Message : </label>
             <textarea id="inputMessageNotification" class="materialize-textarea"></textarea>
         </div>
-
-    </div>
-    <div class="modal-footer">
-        <button class="modal-close waves-effect waves-green btn-flat blue darken-4 white-text" onclick="editController.sendNotification()">Envoyer</button>
+        <a class="font-custom btn green lighten-1" onclick="editController.sendNotification()">Envoyer</a>
+        <a class="font-custom btn red lighten-1 modal-close">Annuler</a>
     </div>
 </div>

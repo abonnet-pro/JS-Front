@@ -15,13 +15,26 @@
 </nav>
 
 <div id="listContent">
+    <h4 class="center-align red-text text-darken-3" id="titleNoItem" style="display: none">Liste vide</h4>
     <table id="itemTable" class="striped centered">
-        <thead>
-        <tr>
-            <th>Acheté</th>
-            <th>Ingrédients</th>
-            <th>Quantité</th>
-        </tr>
+        <thead id="headItem">
+            <tr>
+                <td class="center-align font-custom light-blue-text text-darken-2">
+                    Acheté
+                </td>
+                <td class="center-align font-custom light-blue-text text-darken-2">
+                    Produit
+                </td>
+                <td class="center-align font-custom light-blue-text text-darken-2">
+                    Quantité
+                </td>
+                <td class="center-align font-custom light-blue-text text-darken-2">
+                    Supprimer
+                </td>
+                <td class="center-align font-custom light-blue-text text-darken-2">
+                    Modifier
+                </td>
+            </tr>
         </thead>
         <tbody id="itemBodyTable">
         </tbody>
@@ -30,6 +43,7 @@
 
 <div id="addItem" class="modal">
     <div class="modal-content">
+        <h4 class="red-text text-lighten-2">Ajouter</h4>
         <div class="row">
             <form>
                 <div class="row">
@@ -43,16 +57,15 @@
                     </div>
                 </div>
             </form>
+            <a class="font-custom btn green lighten-1" onclick="editController.saveItem()">Ajouter</a>
+            <a class="font-custom btn red lighten-1 modal-close">Annuler</a>
         </div>
-    </div>
-    <div class="modal-footer ">
-        <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="editController.saveItem()">Confirmer</button>
-        <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
     </div>
 </div>
 
 <div id="updateItem" class="modal">
     <div class="modal-content">
+        <h4 class="red-text text-lighten-2">Modifier</h4>
         <div class="row">
             <form>
                 <div class="row">
@@ -66,20 +79,18 @@
                     </div>
                 </div>
             </form>
+            <a class="font-custom btn green lighten-1" onclick="editController.updateItem()">Modifier</a>
+            <a class="font-custom btn red lighten-1 modal-close">Annuler</a>
         </div>
-    </div>
-    <div class="modal-footer ">
-        <button type="button" class="waves-effect waves-green btn-flat teal lighten-5" onclick="editController.updateItem()">Confirmer</button>
-        <button type="button" class="modal-close waves-effect waves-green btn-flat red lighten-5" onclick="">Annuler</button>
     </div>
 </div>
 
 <div id="modalListShare" class="modal">
     <div class="modal-content">
-        <h1 class="center">Partages</h1>
+        <h4 class="red-text text-lighten-2">Partages</h4>
         <p id="labelShare" style="display: none">Cette liste est partagé avec :</p>
         <p id="labelNoShare">Cette liste n'est partagé avec aucun utilisateur</p>
-        <table id="shareTable" class="striped centered" style="display: none">
+        <table id="shareTable" class="striped centered" style="display: none; margin: 10px;">
             <thead>
             <tr>
                 <th>Nom d'utilisateur</th>
@@ -90,8 +101,6 @@
             <tbody id="shareBodyTable">
             </tbody>
         </table>
-    </div>
-    <div class="modal-footer">
-        <button class="modal-close waves-effect waves-green btn-flat">Ok</button>
+        <a class="font-custom modal-close btn green lighten-1" id="btnShare">Ok</a>
     </div>
 </div>

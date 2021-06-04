@@ -12,7 +12,7 @@ class HistoryController extends BaseController {
         for(let item of items)
         {
             let checked = item.checked ? "check" : "clear"
-            html += `<p><i class="tiny material-icons">${checked}</i> ${item.quantity} ${item.label}</p>`
+            html += `<strong><i class="tiny material-icons">${checked}</i> ${item.quantity} ${item.label}</strong><br>`
         }
 
         return html
@@ -28,10 +28,12 @@ class HistoryController extends BaseController {
             let html = ""
             for(let historyList of historyLists)
             {
-                html +=`<div class="card blue-grey darken-1">
-                        <a class="btn-floating red darken-4 right" onclick="historyController.displayConfirmDelete(${historyList.id})"><i class="material-icons">clear</i></a>
-                        <div class="card-content white-text">
+                html +=`<div class="post-it">
+                        <a class="btn-floating history" onclick="historyController.displayConfirmDelete(${historyList.id})"><i class="material-icons">clear</i></a>
+                        <div class="card-content black-text">
                             <span class="card-title">${historyList.shop} \n ${historyList.date.toLocaleDateString()}</span>
+                            <br>
+                            <br>
                             ${await this.displayItem(historyList.id)}
                         </div>
                     </div>`

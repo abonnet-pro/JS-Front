@@ -70,10 +70,10 @@ class ShareController extends BaseController
                 console.log(disabled)
 
                 html += `<tr>
-                        <td>${useraccount.displayname}</td>
-                        <td>${useraccount.login}</td>
-                        <td><i class="small material-icons">${modificationState}</i></td>
-                        <td>
+                        <td style="background-color: #e5ddcd;">${useraccount.displayname}</td>
+                        <td style="background-color: #e5ddcd;">${useraccount.login}</td>
+                        <td style="background-color: #e5ddcd;"><i class="small material-icons">${modificationState}</i></td>
+                        <td style="background-color: #e5ddcd;">
                             <button type="button" class="red darken-4 btn ${disabled}" onclick="shareController.displayConfirmDelete(${share.id})">
                             <i class="small material-icons">delete</i>
                             </button>
