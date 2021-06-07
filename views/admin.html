@@ -14,12 +14,20 @@
                 <label for="inputLoginSearch">Login de l'utilisateur</label>
             </div>
             <div class="input-field col s1">
-                <a class="btn blue" onclick="adminController.displaySearchUsers()"><i class="material-icons">search</i></a>
+                <a class="btn blue" onclick="adminController.changeUserListDisplay()"><i class="material-icons">search</i></a>
             </div>
         </div>
     </form>
 
     <h2 id="titleUsers">Utilisateurs</h2>
+    <div class="switch" id="switchSub">
+        <label>
+            Tous
+            <input type="checkbox" id="checkSubAccount" onchange="adminController.changeUserListDisplay()">
+            <span class="lever"></span>
+            Abonné
+        </label>
+    </div>
     <br>
     <div class="collection" id="collectionUsers">
     </div>
@@ -48,6 +56,7 @@
                         <select multiple id="selectRoles">
                             <option value="USER" id="selectUser">Utilisateur</option>
                             <option value="ADMIN" id="selectAdmin">Administrateur</option>
+                            <option value="SUB" id="selectSub">Abonné</option>
                         </select>
                     </div>
                     <div>

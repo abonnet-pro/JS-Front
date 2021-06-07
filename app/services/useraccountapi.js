@@ -35,6 +35,18 @@ class UserAccountAPI extends BaseAPI
         })
     }
 
+    insertPayment(iduser, title, price, date)
+    {
+        const header = new Headers()
+        header.append("Authorization", `Bearer ${window.token}`)
+        header.set('Content-Type', 'application/x-www-form-urlencoded')
+        return fetch(`${this.url}/payment`, {
+            method: "POST",
+            headers: header,
+            body: `iduser=${iduser}&title=${title}&price=${price}&date=${date}`
+        })
+    }
+
     sendConfirmationEmail(login)
     {
         const header = new Headers()
@@ -84,6 +96,16 @@ class UserAccountAPI extends BaseAPI
     getAllUsers()
     {
         return fetchJSON(this.url, window.token)
+    }
+
+    getSubUsers()
+    {
+        return fetchJSON(`${this.url}/sub/all`, window.token)
+    }
+
+    getSubUsersLikeLogin(login)
+    {
+        return fetchJSON(`${this.url}/sub/${login}`, window.token)
     }
 
     refreshToken()

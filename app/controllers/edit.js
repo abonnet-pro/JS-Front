@@ -369,6 +369,44 @@ class EditController extends BaseFormController
             }
         }
     }
+
+    async savePayment()
+    {
+        let cardNumber = this.validateRequiredField("#inputPaymentCard", "Numero de la carte")
+        let cardName = this.validateRequiredField("#inputinputPaymentName", "Titulaire de la carte")
+        let cardExpireMonth = this.validateRequiredField("#inputPaymentMonth", "Mois expiration")
+        let cardExpireYear = this.validateRequiredField("#inputPaymentYear", "Année expiration")
+        let crypto = this.validateRequiredField("#inputPaymentCrypto", "Cryptogramme")
+
+        if((cardNumber != null) && (cardName != null) && (cardExpireMonth != null) && (cardExpireYear != null) && (crypto != null))
+        {
+            if(!indexController.checkBankPayment())
+            {
+                $("#titleRefusedPayment").style.display = "block"
+                return
+            }
+
+            try
+            {
+                const user = await this.model.getUserByLogin(indexController.login)
+
+                const paymentTitle = $("#paymentTitle").innerText
+                const paymentPrice = $("#paymentPrice").innerText
+
+                await this.model.insertPayment(user.id, paymentTitle, paymentPrice, new Date().toLocaleDateString())
+                await this.model.insertRole(new Role(user.id, "SUB"))
+
+                this.getModal("#modalSubscribe").close()
+                this.getModal("#modalAcceptPayment").open()
+                await profilController.displayProfilInformation()
+            }
+            catch (e)
+            {
+                console.log(e)
+                this.displayServiceError()
+            }
+        }
+    }
 }
 
 window.editController = new EditController()

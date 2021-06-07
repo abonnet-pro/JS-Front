@@ -134,6 +134,11 @@ class Model
         return this.notificationAPI.insert(notification).then(res => res.status)
     }
 
+    insertPayment(iduser, title, price, date)
+    {
+        return this.userAccountAPI.insertPayment(iduser, title, price, date).then(res => res.status)
+    }
+
     delete(id)
     {
         return this.listAPI.delete(id).then(res => res.status)
@@ -250,6 +255,42 @@ class Model
         {
             let users = []
             for(let user of await this.userAccountAPI.getAllUsers())
+            {
+                users.push(Object.assign(new UserAccount(), user))
+            }
+            return users
+        }
+        catch(e)
+        {
+            if (e === 404) return null
+            return undefined
+        }
+    }
+
+    async getSubUsers()
+    {
+        try
+        {
+            let users = []
+            for(let user of await this.userAccountAPI.getSubUsers())
+            {
+                users.push(Object.assign(new UserAccount(), user))
+            }
+            return users
+        }
+        catch(e)
+        {
+            if (e === 404) return null
+            return undefined
+        }
+    }
+
+    async getUsersSubLikeLogin(login)
+    {
+        try
+        {
+            let users = []
+            for(let user of await this.userAccountAPI.getSubUsersLikeLogin(login))
             {
                 users.push(Object.assign(new UserAccount(), user))
             }

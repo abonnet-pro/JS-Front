@@ -21,6 +21,14 @@
         <h5 id="labelName"></h5>
     </div>
     <div class="divider black"></div>
+    <div class="section">
+        <label for="labelSub">Status : </label>
+        <h5 id="labelSub"></h5>
+    </div>
+    <div class="divider black"></div>
+    <div class="section" id="btn-subscribe">
+        <a class="btn red white-text" onclick="profilController.showPayement()">JE M'ABONNE</a>
+    </div>
 </div>
 
 <div id="updateUser" class="modal">
@@ -55,5 +63,66 @@
             <a class="font-custom btn green lighten-1" onclick="editController.updateUser()">Confirmer</a>
             <a class="font-custom btn red lighten-1 modal-close">Annuler</a>
         </div>
+    </div>
+</div>
+
+<div id="modalSubscribe" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <h4 class="red-text text-lighten-2">Abonnement</h4>
+            <div>
+                <h6 class="red white-text center" style="display: none" id="titleRefusedPayment">Votre paiement a été refusé</h6>
+            </div>
+            <br>
+            <div class="divider black"></div>
+                <p>Marchand : <span class="blue-text">ShoppingInc</span></p>
+                <p>Commande : <span class="blue-text" id="paymentTitle">SUB-1</span></p>
+                <p>Montant : <span class="blue-text" id="paymentPrice">4.99</span><span class="blue-text"> EUR</span></p>
+            <div class="divider black"></div>
+            <form>
+                <div class="row">
+                    <label class="font-custom">Numero de la carte :</label>
+                    <div class="input-field inline">
+                        <input id="inputPaymentCard" type="number" class="validate">
+                    </div>
+                    <label class="font-custom">Titulaire de la carte :</label>
+                    <div class="input-field inline">
+                        <input id="inputinputPaymentName" type="text" class="validate">
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="font-custom">Date d'expiration (MM/AAAA) :</label>
+                    <div class="input-field inline">
+                        <input id="inputPaymentMonth" type="number" class="validate col s2">
+                        <input id="inputPaymentYear" type="number" class="validate col s2">
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="font-custom">Cryptogramme : </label>
+                    <div class="input-field inline">
+                        <input id="inputPaymentCrypto" type="number" class="validate col s3">
+                    </div>
+                </div>
+            </form>
+            <div class="divider black"></div>
+            <br>
+            <a class="font-custom btn green lighten-1" onclick="editController.savePayment()">Payer</a>
+            <a class="font-custom btn red lighten-1 modal-close">Annuler</a>
+        </div>
+    </div>
+</div>
+
+<div id="modalAcceptPayment" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <h4 class="red-text text-lighten-2">Abonnement</h4>
+            <div class="center-align">
+                <i class="medium material-icons green white-text">check</i>
+            </div>
+            <p class="font-custom green-text center">Votre paiement a été accepté !</p>
+            <p class="font-custom green-text center">Vous pouvez désormais accéder à toutes les fonctionnalités de l'application !</p>
+            <p class="font-custom green-text center">Vous recevrez un email contenant les informations de paiement</p>
+        </div>
+        <a class="font-custom btn green lighten-1 modal-close" onclick="">Ok</a>
     </div>
 </div>

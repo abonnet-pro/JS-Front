@@ -10,12 +10,16 @@ class ProfilController extends BaseController
     {
         try
         {
+            console.log("rentre")
             window.token = await this.model.refreshToken()
             sessionStorage.setItem("token", window.token)
             this.user = await this.model.getUserByLogin(indexController.login)
+            this.roles = await this.model.getRoles(indexController.login)
 
             $("#labelLogin").innerText = this.user.login
             $("#labelName").innerText = this.user.displayname
+            $("#labelSub").innerText = this.roles.find(role => role.role === "SUB") === undefined ? "Non Abonné" : "Abonné"
+            $("#btn-subscribe").style.display = this.roles.find(role => role.role === "SUB") === undefined ? "block" : "none"
         }
         catch(e)
         {
@@ -51,6 +55,17 @@ class ProfilController extends BaseController
             $("#inputPasswordUpdateUser").value = ""
             $("#inputConfirmPasswordUpdateUser").value = ""
         }
+    }
+
+    showPayement()
+    {
+        $("#titleRefusedPayment").style.display = "none"
+        $("#inputPaymentCard").value = ""
+        $("#inputinputPaymentName").value = ""
+        $("#inputPaymentMonth").value = ""
+        $("#inputPaymentYear").value = ""
+        $("#inputPaymentCrypto").value = ""
+        this.getModal("#modalSubscribe").open()
     }
 }
 

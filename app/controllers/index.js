@@ -280,6 +280,12 @@ class IndexController extends BaseController
 
     displaySearchShare(listId)
     {
+        if(this.roles.find(role => role.role === "SUB") === undefined)
+        {
+            this.toast("Veuillez souscrire à l'abonnement pour plus de fonctionnalités")
+            return
+        }
+
         this.listId = listId
         $("#inputLoginShare").value = null
         $("#inputLoginShare").style.backgroundColor = ""
@@ -297,8 +303,15 @@ class IndexController extends BaseController
         this.btnAddList.style.display = "none"
     }
 
-    showForm()
+    async showForm()
     {
+        const lists = await this.model.getAllList()
+        if(lists.length >= 1 && this.roles.find(role => role.role === "SUB") === undefined)
+        {
+            this.toast("Veuillez souscrire à l'abonnement pour plus de fonctionnalités")
+            return
+        }
+
         $("#inputShopList").style.backgroundColor = ""
         $("#inputDateList").style.backgroundColor = ""
         this.formEditList.style.display = "block"
@@ -359,11 +372,11 @@ class IndexController extends BaseController
 
     async checkRoles()
     {
-        const roles = await this.model.getRoles(this.login)
+        this.roles = await this.model.getRoles(this.login)
 
-        for(let role in roles)
+        for(let role of this.roles)
         {
-            if(roles[role].role === "ADMIN")
+            if(role.role === "ADMIN")
             {
                 $("#nav-admin").style.display = "block"
             }
@@ -491,6 +504,12 @@ class IndexController extends BaseController
             console.log(e)
             this.displayServiceError()
         }
+    }
+
+    checkBankPayment()
+    {
+        /* Verifie le paiement auprés de la banque, retourne vrai si le paiement a été effectué correctement */
+        return true
     }
 }
 
