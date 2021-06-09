@@ -1,4 +1,4 @@
-const serviceBaseUrl = "http://localhost:3333"
+const serviceBaseUrl = "http://ec2-54-164-198-238.compute-1.amazonaws.com:3333"
 window.token = ""
 
 class BaseAPI
