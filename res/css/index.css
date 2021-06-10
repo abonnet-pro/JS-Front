@@ -48,7 +48,8 @@ td{
 
 .btn
 {
-    border: 1px solid #121212;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
 }
 
 #tableAllListShare{
@@ -96,6 +97,7 @@ table{
     border: 2px solid #121212;
     border-radius: 10px;
     background-color: #e5ddcd;
+    max-height: 100%;
 }
 
 p{
@@ -149,4 +151,63 @@ a{
 
 #inputPaymentYear{
     margin-left: 20px;
+}
+
+#fieldLogin{
+    border: 1px solid #ffffff;
+    background-color: white;
+    border-radius: 10px;
+    -webkit-appearance: none;
+    padding-left: 10px;
+}
+
+#fieldPassword{
+    border: 1px solid #ffffff;
+    background-color: white;
+    border-radius: 10px;
+    -webkit-appearance: none;
+    padding-left: 10px;
+}
+
+.custom_field{
+    border: 1px solid #ffffff !important;
+    background-color: white !important;
+    border-radius: 10px !important;
+    -webkit-appearance: none !important;
+    padding-left: 10px !important;
+}
+
+.customLabelField{
+    padding-left: 10px !important;
+}
+
+#labelPassword{
+    padding-left:10px;
+}
+
+#labelLogin{
+    padding-left:10px;
+}
+
+#buttonLogin{
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+}
+
+#buttonInscription{
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+}
+
+#addUser{
+    width: 50%;
+    max-height: 100%;
+}
+
+#addItem{
+    width: 50%;
+}
+
+.modal_width{
+    width: 50% !important;
 }

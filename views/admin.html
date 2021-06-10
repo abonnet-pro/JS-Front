@@ -10,8 +10,8 @@
     <form class="col s12">
         <div class="row">
             <div class="input-field col s11">
-                <input id="inputLoginSearch" type="text" class="validate">
-                <label for="inputLoginSearch">Login de l'utilisateur</label>
+                <input id="inputLoginSearch" type="text" class="validate custom_field">
+                <label for="inputLoginSearch" class="customLabelField">Login de l'utilisateur</label>
             </div>
             <div class="input-field col s1">
                 <a class="btn blue" onclick="adminController.changeUserListDisplay()"><i class="material-icons">search</i></a>
@@ -19,7 +19,7 @@
         </div>
     </form>
 
-    <h2 id="titleUsers">Utilisateurs</h2>
+    <h2 id="titleUsers" class="red-text text-lighten-2">Utilisateurs</h2>
     <div class="switch" id="switchSub">
         <label>
             Tous
@@ -36,22 +36,21 @@
 
 <div id="updateUserAdmin" class="modal">
     <div class="modal-content">
-
             <h4 class="red-text text-lighten-2">Utilisateur</h4>
             <br>
             <form>
                 <div class="row">
-                    <div class="input-field">
+                    <div class="input-field col s12">
                         <i class="material-icons prefix">email</i>
-                        <input id="inputLoginUpdateUserAdmin" type="text" class="validate">
-                        <label for="inputLoginUpdateUserAdmin">Login</label>
+                        <input id="inputLoginUpdateUserAdmin" type="text" class="validate custom_field">
+                        <label for="inputLoginUpdateUserAdmin" class="customLabelField">Login</label>
                     </div>
-                    <div class="input-field">
+                    <div class="input-field col s12">
                         <i class="material-icons prefix">account_circle</i>
-                        <input id="inputNameUpdateUserAdmin" type="text" class="validate">
-                        <label for="inputNameUpdateUserAdmin">Nom d'utilisateur</label>
+                        <input id="inputNameUpdateUserAdmin" type="text" class="validate custom_field">
+                        <label for="inputNameUpdateUserAdmin" class="customLabelField">Nom d'utilisateur</label>
                     </div>
-                    <div class="input-field">
+                    <div class="input-field col s12">
                         <i class="material-icons prefix">accessibility</i>
                         <select multiple id="selectRoles">
                             <option value="USER" id="selectUser">Utilisateur</option>
@@ -104,12 +103,12 @@
         </div>
         <div class="section">
             <label for="inputTitleNotification">Titre : </label>
-            <input id="inputTitleNotification" type="text" class="validate">
+            <input id="inputTitleNotification" type="text" class="validate custom_field">
         </div>
 
         <div class="section">
             <label for="inputMessageNotification">Message : </label>
-            <textarea id="inputMessageNotification" class="materialize-textarea"></textarea>
+            <textarea id="inputMessageNotification" class="materialize-textarea custom_field"></textarea>
         </div>
         <a class="font-custom btn green lighten-1" onclick="editController.sendNotification()">Envoyer</a>
         <a class="font-custom btn red lighten-1 modal-close">Annuler</a>

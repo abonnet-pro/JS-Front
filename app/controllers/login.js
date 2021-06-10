@@ -28,7 +28,15 @@ class LoginController extends BaseFormController
         let displayName = this.validateRequiredField("#inputDisplayName", "Nom d'utilisateur")
         let login = this.validateRequiredField("#inputLogin", "Login")
         let password = this.validateRequiredField("#inputPassword", "Mot de passe")
-        if((displayName != null) && (login != null) && (password != null))
+        let confirm = this.validateRequiredField("#inputConfirmPassword", "Confirmer")
+
+        if(confirm !== password)
+        {
+            this.toast("Les mots de passe ne sont pas identiques !")
+            return
+        }
+
+        if((displayName != null) && (login != null) && (password != null) && (confirm != null))
         {
             if(!$("#inputLogin").validity.valid)
             {

@@ -3,13 +3,15 @@
         <a href="index.html" id="itemTitle" class="brand-logo"></a>
         <a id="itemDisplayName" class="brand-logo center"></a>
         <ul class="right hide-on-med-and-down">
-            <li><a id="nav-end" onclick="indexController.displayConfirmArchive(indexController.listId)" class="modal-trigger">Terminer la liste</a></li>
-        </ul>
-        <ul class="right hide-on-med-and-down">
-            <li><a id="nav-add" onclick="itemController.newItem()" class="modal-trigger">Ajouter ingrédient</a></li>
-        </ul>
-        <ul class="right hide-on-med-and-down">
-            <li><a onclick="shareController.displayShareList()" class="modal-trigger">Voir les partages</a></li>
+            <li>
+                <a id="nav-end" onclick="indexController.displayConfirmArchive(indexController.listId)" class="modal-trigger"><i class="material-icons left">archive</i>Terminer</a>
+            </li>
+            <li>
+                <a id="nav-add" onclick="itemController.newItem()" class="modal-trigger"><i class="material-icons left">add_shopping_cart</i>Ajouter</a>
+            </li>
+            <li>
+                <a onclick="shareController.displayShareList()" class="modal-trigger"><i class="material-icons left">share</i>Partages</a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -47,13 +49,15 @@
         <div class="row">
             <form>
                 <div class="row">
-                    <div class="input-field">
-                        <input id="inputLabelItem" type="text" class="validate">
-                        <label for="inputLabelItem">Nom de l'ingredient</label>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">create</i>
+                        <input id="inputLabelItem" type="text" class="validate custom_field">
+                        <label for="inputLabelItem" class="customLabelField">Nom de l'ingredient</label>
                     </div>
-                    <div class="input-field">
-                        <input id="inputQuantityItem" type="number" min="1" class="validate">
-                        <label for="inputQuantityItem">Nombres d'ingredients</label>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">add_circle</i>
+                        <input id="inputQuantityItem" type="number" min="1" class="validate custom_field">
+                        <label for="inputQuantityItem" class="customLabelField">Nombres d'ingredients</label>
                     </div>
                 </div>
             </form>
@@ -63,19 +67,21 @@
     </div>
 </div>
 
-<div id="updateItem" class="modal">
+<div id="updateItem" class="modal modal_width">
     <div class="modal-content">
         <h4 class="red-text text-lighten-2">Modifier</h4>
         <div class="row">
             <form>
                 <div class="row">
-                    <div class="input-field">
-                        <input id="inputLabelUpdateItem" type="text" class="validate">
-                        <label for="inputLabelUpdateItem">Nom de l'ingredient</label>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">create</i>
+                        <input id="inputLabelUpdateItem" type="text" class="validate custom_field">
+                        <label for="inputLabelUpdateItem" class="customLabelField">Nom de l'ingredient</label>
                     </div>
-                    <div class="input-field">
-                        <input id="inputQuantityUpdateItem" type="number" min="1" class="validate">
-                        <label for="inputQuantityUpdateItem">Nombres d'ingredients</label>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">add_circle</i>
+                        <input id="inputQuantityUpdateItem" type="number" min="1" class="validate custom_field">
+                        <label for="inputQuantityUpdateItem" class="customLabelField">Nombres d'ingredients</label>
                     </div>
                 </div>
             </form>

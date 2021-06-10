@@ -2,23 +2,19 @@
     <div class="nav-wrapper">
         <a id="itemTitle" class="brand-logo">Listes de course</a>
         <ul id="nav-deconexion" class="right hide-on-med-and-down">
-            <li><a onclick="loginController.deconnexion()" class="modal-trigger">Deconnexion</a></li>
-        </ul>
-        <ul id="nav-history" class="right hide-on-med-and-down">
-            <li><a onclick="indexController.showHistory()" class="modal-trigger">Historique</a></li>
-        </ul>
-        <ul id="nav-profil" class="right hide-on-med-and-down">
-            <li><a onclick="indexController.showProfil()" class="modal-trigger">Profil</a></li>
+            <li><a onclick="indexController.showProfil()" class="modal-trigger"><i class="material-icons left">account_circle</i>Profil</a></li>
+            <li><a onclick="indexController.showHistory()" class="modal-trigger"><i class="material-icons left">content_paste</i>Historique</a></li>
+            <li><a onclick="loginController.deconnexion()" class="modal-trigger"><i class="material-icons left">block</i>Deconnexion</a></li>
         </ul>
         <ul id="nav-admin" class="right hide-on-med-and-down" style="display:none;">
-            <li><a onclick="indexController.showAdmin()" class="modal-trigger">Administration</a></li>
+            <li><a onclick="indexController.showAdmin()" class="modal-trigger"><i class="material-icons left">assignment_ind</i>Administration</a></li>
         </ul>
     </div>
 </nav>
 
 <div class="row col s12" id="contentLists">
     <div id="divList" class="col s6">
-        <h1 id="titleList" class="center-align">Mes listes</h1>
+        <h1 id="titleList" class="center-align red-text text-lighten-2">Mes listes</h1>
         <h4 class="center-align red-text text-darken-3" id="titleNoList" style="display: none">Aucune liste en cours</h4>
         <div id="divMyList" style="display: none">
                 <table id="tableAllList" class="striped centered">
@@ -33,12 +29,12 @@
                     <div class="row">
                         <form class="col s12">
                             <div class="input-field col s4">
-                                <input id="inputShopList" type="text" class="validate">
-                                <label for="inputShopList"  class="">Magasin</label>
+                                <input id="inputShopList" type="text" class="validate custom_field">
+                                <label for="inputShopList"  class="customLabelField">Magasin</label>
                             </div>
                             <div class="input-field col s4">
-                                <input id="inputDateList" type="date" class="validate">
-                                <label for="inputDateList">Date</label>
+                                <input id="inputDateList" type="date" class="validate custom_field">
+                                <label for="inputDateList" class="customLabelField">Date</label>
                             </div>
                             <div class="input-field col s1">
                                 <a class="btn-floating btn-large waves-effect waves-light green lighten-2" onclick="editController.saveList()"><i class="material-icons right">check</i></a>
@@ -54,12 +50,12 @@
                     <div class="row">
                         <form class="col s12">
                             <div class="input-field col s4">
-                                <input id="inputUpdateShop" type="text" class="validate">
-                                <label for="inputUpdateShop">Magasin</label>
+                                <input id="inputUpdateShop" type="text" class="validate custom_field">
+                                <label for="inputUpdateShop" class="customLabelField">Magasin</label>
                             </div>
                             <div class="input-field col s4">
-                                <input id="inputUpdateDate" type="date" class="validate">
-                                <label for="inputUpdateDate">Date</label>
+                                <input id="inputUpdateDate" type="date" class="validate custom_field">
+                                <label for="inputUpdateDate" class="customLabelField">Date</label>
                             </div>
                             <div class="input-field col s1">
                                 <a class="btn-floating btn-large waves-effect waves-light green lighten-2" onclick="editController.updateList()"><i class="material-icons right">check</i></a>
@@ -77,7 +73,7 @@
     <div class="divider black" id="divider"></div>
 
     <div id="divShareList" class="col s6">
-        <h1 class="center-align">Listes partagées</h1>
+        <h1 class="center-align red-text text-lighten-2">Listes partagées</h1>
         <h4 class="center-align red-text text-darken-3" id="titleNoShareList" style="display: none">Aucune liste partagée</h4>
 
         <div id="divListShare" style="display: none">
@@ -90,12 +86,12 @@
             <div class="row">
                 <form class="col s12">
                     <div class="input-field col s4">
-                        <input id="inputUpdateShareShop" type="text" class="validate">
-                        <label for="inputUpdateShareShop">Magasin</label>
+                        <input id="inputUpdateShareShop" type="text" class="validate custom_field">
+                        <label for="inputUpdateShareShop" class="customLabelField">Magasin</label>
                     </div>
                     <div class="input-field col s4">
-                        <input id="inputUpdateShareDate" type="date" class="validate">
-                        <label for="inputUpdateShareDate">Date</label>
+                        <input id="inputUpdateShareDate" type="date" class="validate custom_field">
+                        <label for="inputUpdateShareDate" class="customLabelField">Date</label>
                     </div>
                     <div class="input-field col s1">
                         <a class="btn-floating btn-large waves-effect waves-light green lighten-2" onclick="editController.updateShareList()"><i class="material-icons right">check</i></a>
@@ -117,16 +113,16 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s11">
-                        <input id="inputLoginShare" type="text" class="validate">
-                        <label for="inputLoginShare">Login de l'utilisateur</label>
+                        <input id="inputLoginShare" type="text" class="validate custom_field">
+                        <label for="inputLoginShare" class="customLabelField">Login de l'utilisateur</label>
                     </div>
                     <div class="input-field col s1">
                         <a class="btn blue" onclick="editController.displayAvailableLogin()"><i class="material-icons">search</i></a>
                     </div>
                 </div>
                 <p class="red-text" id="loginNotFound" style="display: none">*Veuillez entrer un login existant</p>
-                <label>Liste utilisateurs</label>
-                <select class="browser-default col s12" style="background-color: #e5ddcd;" id="userList" disabled>
+                <label for="userList">Liste utilisateurs</label>
+                <select class="browser-default col s12" style="background-color: #ffffff;" id="userList" disabled>
                 </select>
                 <p>
                     <label>

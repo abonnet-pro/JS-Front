@@ -6,24 +6,24 @@
 
 <div>
     <div class="row">
-        <h3 class="striped centered">Votre profil</h3>
+        <h3 class="striped centered red-text text-lighten-2">Votre profil</h3>
         <a id="btnUpdateProfil" class="btn-floating btn-large red" onclick="profilController.edit()"><i class="material-icons">edit</i></a>
     </div>
 
     <div class="divider black"></div>
     <div class="section">
         <label for="labelLogin">Adresse e-mail : </label>
-        <h5 id="labelLogin"></h5>
+        <h5 id="labelLogin" class="font-custom"></h5>
     </div>
     <div class="divider black"></div>
     <div class="section">
         <label for="labelName">Nom d'utilisateur : </label>
-        <h5 id="labelName"></h5>
+        <h5 id="labelName" class="font-custom"></h5>
     </div>
     <div class="divider black"></div>
     <div class="section">
         <label for="labelSub">Status : </label>
-        <h5 id="labelSub"></h5>
+        <h5 id="labelSub" class="font-custom"></h5>
     </div>
     <div class="divider black"></div>
     <div class="section" id="btn-subscribe">
@@ -39,24 +39,28 @@
             <form>
                 <div class="row">
                     <div class="input-field">
-                        <input id="inputLoginUpdateUser" type="text" class="validate">
-                        <label for="inputLoginUpdateUser">Login</label>
+                        <i class="material-icons prefix">email</i>
+                        <input id="inputLoginUpdateUser" type="text" class="validate custom_field">
+                        <label for="inputLoginUpdateUser" class="customLabelField">Login</label>
                     </div>
                     <div class="input-field">
-                        <input id="inputNameUpdateUser" type="text" class="validate">
-                        <label for="inputNameUpdateUser">Nom d'utilisateur</label>
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="inputNameUpdateUser" type="text" class="validate custom_field">
+                        <label for="inputNameUpdateUser" class="customLabelField">Nom d'utilisateur</label>
                     </div>
                     <label>
                         <input id="checkUpdatePassword" type="checkbox" onchange="profilController.displayUpdatePassword()"/>
                         <span>Modifier le mot de passe</span>
                     </label>
                     <div id="updatePasswordUser" class="input-field" style="display: none">
-                        <input id="inputPasswordUpdateUser" type="password" class="validate">
-                        <label for="inputPasswordUpdateUser">Nouveau mot de passe</label>
+                        <i class="material-icons prefix">lock</i>
+                        <input id="inputPasswordUpdateUser" type="password" class="validate custom_field">
+                        <label for="inputPasswordUpdateUser" class="customLabelField">Nouveau mot de passe</label>
                     </div>
                     <div id="confirmUpdatePasswordUser" class="input-field" style="display: none">
-                        <input id="inputConfirmPasswordUpdateUser" type="password" class="validate">
-                        <label for="inputConfirmPasswordUpdateUser">Confirmation</label>
+                        <i class="material-icons prefix">lock</i>
+                        <input id="inputConfirmPasswordUpdateUser" type="password" class="validate custom_field">
+                        <label for="inputConfirmPasswordUpdateUser" class="customLabelField">Confirmation</label>
                     </div>
                 </div>
             </form>
@@ -83,26 +87,26 @@
                 <div class="row">
                     <label class="font-custom">Numero de la carte :</label>
                     <div class="input-field inline">
-                        <input id="inputPaymentCard" type="number" class="validate">
+                        <input id="inputPaymentCard" type="number" class="validate custom_field">
                     </div>
                 </div>
                 <div class="row">
                     <label class="font-custom">Titulaire de la carte :</label>
                     <div class="input-field inline">
-                        <input id="inputinputPaymentName" type="text" class="validate">
+                        <input id="inputinputPaymentName" type="text" class="validate custom_field">
                     </div>
                 </div>
                 <div class="row">
                     <label class="font-custom">Date d'expiration (MM/AAAA) :</label>
                     <div class="input-field inline">
-                        <input id="inputPaymentMonth" type="number" class="validate col s2">
-                        <input id="inputPaymentYear" type="number" class="validate col s2">
+                        <input id="inputPaymentMonth" type="number" class="validate col s2 custom_field">
+                        <input id="inputPaymentYear" type="number" class="validate col s2 custom_field">
                     </div>
                 </div>
                 <div class="row">
                     <label class="font-custom">Cryptogramme : </label>
                     <div class="input-field inline">
-                        <input id="inputPaymentCrypto" type="number" class="validate col s3">
+                        <input id="inputPaymentCrypto" type="number" class="validate col s3 custom_field">
                     </div>
                 </div>
             </form>

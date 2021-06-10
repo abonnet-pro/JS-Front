@@ -11,29 +11,36 @@
     </head>
     <body>
     <div class="container">
-        <h4 class="red-text text-lighten-2 center">Connexion</h4>
+        <div class="center">
+            <img src="res/images/logo_shop.png">
+            <h4 class="red-text text-lighten-2 center">Shopping List</h4>
+        </div>
         <p id="labelNoConfirmEmail" class="center red white-text" style="display: none">Nous vous avons envoyé un email de confirmation. Veuillez confirmer votre mail avant de vous connecter.<a onclick="loginController.sendConfirmationMail()"> <u class="white-text">Renvoyer le mail de confirmation</u></a></p>
         <div>
             <div class="row">
                 <form class="col s12" id="formLogin">
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input id="fieldLogin" type="text" class="validate" value="anthony.bonnet1@orange.fr">
-                            <label for="fieldLogin" class="active">Adresse e-mail</label>
+                        <div class="input-field col s6 offset-s3">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="fieldLogin" type="text" class="validate">
+                            <label for="fieldLogin" class="active" id="labelLogin">Adresse e-mail</label>
                         </div>
-                        <div class="input-field col s12">
-                            <input id="fieldPassword" type="password" class="validate" value="1401">
-                            <label for="fieldPassword" class="active">Mot de passe</label>
-                        </div>
-                        <div class="col s12">
-                            <a onclick="loginController.displayResetPassword()" >Mot de passe oublié</a>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6 offset-s3">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="fieldPassword" type="password" class="validate">
+                            <label for="fieldPassword" class="active" id="labelPassword">Mot de passe</label>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="row center">
-                <button class="waves-effect waves-light btn" onclick="loginController.authenticate()"><i class="material-icons right">check</i>Se connecter</button>
-                <button class="waves-effect waves-light btn" onclick="loginController.displayInscription()">S'inscrire</button>
+                <button class="waves-effect waves-light btn blue" id="buttonLogin" onclick="loginController.authenticate()">Se connecter</button>
+                <button class="waves-effect waves-light btn red accent-1" id="buttonInscription" onclick="loginController.displayInscription()">S'inscrire</button>
+            </div>
+            <div class="row center">
+                <a onclick="loginController.displayResetPassword()" >Mot de passe oublié</a>
             </div>
         </div>
     </div>
@@ -43,20 +50,25 @@
                 <h1 class="red-text text-lighten-2">Inscription</h1>
                 <form>
                     <div class="row">
-                        <div class="input-field">
+                        <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
-                            <input id="inputDisplayName" type="text" class="validate">
-                            <label for="inputDisplayName">Nom d'utilisateur</label>
+                            <input id="inputDisplayName" type="text" class="custom_field">
+                            <label for="inputDisplayName" class="customLabelField">Nom d'utilisateur</label>
                         </div>
-                        <div class="input-field">
+                        <div class="input-field col s12">
                             <i class="material-icons prefix">email</i>
-                            <input id="inputLogin" type="email" class="validate">
-                            <label for="inputLogin">Login (email)</label>
+                            <input id="inputLogin" type="email" class="validate custom_field">
+                            <label for="inputLogin" class="customLabelField">Login (email)</label>
                         </div>
-                        <div class="input-field">
-                            <i class="material-icons prefix">password</i>
-                            <input id="inputPassword" type="password" class="validate">
-                            <label for="inputPassword">Mot de passe</label>
+                        <div class="input-field col s12 ">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="inputPassword" type="password" class="validate custom_field">
+                            <label for="inputPassword" class="customLabelField">Mot de passe</label>
+                        </div>
+                        <div class="input-field col s12 ">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="inputConfirmPassword" type="password" class="validate custom_field">
+                            <label for="inputConfirmPassword" class="customLabelField">Confirmer</label>
                         </div>
                     </div>
                 </form>
@@ -73,8 +85,8 @@
                 <form>
                     <div class="row">
                         <div class="input-field">
-                            <input id="inputLoginReset" type="text" class="validate">
-                            <label for="inputLoginReset">Adresse mail</label>
+                            <input id="inputLoginReset" type="text" class="validate custom_field">
+                            <label for="inputLoginReset" class="customLabelField">Adresse mail</label>
                         </div>
                     </div>
                 </form>
