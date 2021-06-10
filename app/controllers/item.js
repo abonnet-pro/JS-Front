@@ -21,7 +21,7 @@ class ItemController extends BaseController
             let content = ""
             const list = await this.model.getList(indexController.listId)
             const items = await this.model.getAllItemByList(list.id)
-            $("#itemTitle").innerText = `Liste du ${list.date.toLocaleDateString()}`
+            $("#itemTitle").innerHTML = `<i class="material-icons">navigate_before</i>Liste du ${list.date.toLocaleDateString()}`
 
             if(items.length > 0)
             {
