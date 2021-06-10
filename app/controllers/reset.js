@@ -39,7 +39,15 @@ class ResetController extends BaseFormController
     async resetPassword()
     {
         let password = this.validateRequiredField("#inputNewPassword", "Mot de passe")
-        if(password != null)
+        let confirm = this.validateRequiredField("#inputNewPasswordConfirm", "Confirmer")
+
+        if(password !== confirm)
+        {
+            this.toast("Les mots de passe ne sont pas identiques !")
+            return
+        }
+
+        if(password != null && confirm != null)
         {
             try
             {
